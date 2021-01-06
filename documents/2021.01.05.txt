@@ -1,0 +1,27 @@
+                                 About Git and Github 
+
+Today i refer the document related to git provided by you.I have already created github account ,so then i create a new repository named "web".
+In which i learn how to cloning a project in our local machine or a pc. By cloning we have all the code present in a paticular repository
+directly into our pc.
+
+Then preform various commands of git in gitbash teminal.
+
+git remote -v : It helps us to manage connections to remote repositories and -v shows their shortname or the nickname like origin.
+git fetch : It is use to fetch the contents from a remote repository.
+git checkout : Allows us to temporarily reset our directory to another commit.
+git checkout main : It brings back to the previous or the main state.
+git add : It is used to add files in the our  current directory but not in the repository.
+git status : It shows the status of our files in our directory.
+git push origin: It pushes the current repo to the origin.
+git diff filename: It compares th file written previously and if the changes are there in the present file the it shows the difference 
+                   between them.
+git merge : Merges the branches.
+
+Apart from this commands which are not in the given document that i learned are:
+
+git pull : pull data from a remote repo.
+touch <file name> : It adds a file into the current directory.
+git log : shows the detailed logs of all the commits made in the project. 
+git init : It creates new  blank git repository.It is the first command on the git.
+ 
+And also i watch some vedios related to git and github from youtube.
