@@ -1,0 +1,11 @@
+                                      Git and Git Hub
+
+Today I face the difficulty in pushing the file it shows the error master -> master(non-fast-forward).
+Then i search on google how to solve this error then i try git pull --rebase origin master then it runs
+but it copy previous file in the local pc again.So i deleted all the branches and folder from mu local pc 
+and again create the new one and run the commands.
+Today new commands i learn is:
+git revert - It is a forward moving operation that gives way of undoing changes.
+HEAD - It works as a pointer that points out the last commit in the current checkout branch.
+git log - Gives history of all the commits.
+git merge --no-ff origin/master - It merges both the branches
