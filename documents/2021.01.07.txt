@@ -1,0 +1,10 @@
+                                  Git and GitHub
+
+Today i solve queries related to the conflicts ,merge,stash and many more which disscued in the session.
+Commands like git checkout --filename which acks same as the revert but it makes the changes before the 
+git commit command.
+git squash - squash command is use to combine multiple commits into one and any point in time.
+git commit --amend command is a convenient way to modify the most recent commit.
+git rebase - It is a process of moving or combining a sequence of commits to a new base commit.
+
+Then now i watch the vedio lectures of javascript and try new programs from that. 
