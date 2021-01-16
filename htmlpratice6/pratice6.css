@@ -1,0 +1,60 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+img{
+    
+    width: 380px;
+    height: 90px;
+    
+}
+.container{
+    position: relative;
+    margin-left: 36%;
+    margin-top: 25px;
+}
+.center{
+    position: absolute;
+    top: 7px;
+    left: 100px;
+    color: white;
+}
+.contact{
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+}
+#subject{
+    height: 100px;
+}
+input[type=text],textarea{
+    display: flex;
+    align-items: center;
+    width:310px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    margin-top:6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+.input-icons i{
+    position: absolute;
+    padding: 10px;
+}
+button{
+    margin-left: 110px;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(161, 61, 161);
+    border-radius: 30px;
+    width: 110px;
+    padding:8px;
+    font-size: x-small;
+    color: whitesmoke;
+    border:none;
+}
+
+
