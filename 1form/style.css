@@ -1,0 +1,30 @@
+
+*{ 
+    
+    box-sizing:border-box;
+}
+
+th,td{
+    height:20px;
+    width:250px;
+    padding:5px;
+    align:center;
+}
+th{
+    background:yellow;
+    color:red;
+}
+tr{
+    background-color:lightblue;
+}
+.btn{
+    padding-left:20px;
+    padding-right:20px;
+    padding-top:10px;
+    padding-bottom:10px;
+    background:lightgreen;
+}
+.main{
+    width:95%;
+    background:lightgreen;
+}
