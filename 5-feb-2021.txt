@@ -1,0 +1,9 @@
+                                   PHP Pratice
+
+Today,first i watch the vedios of php and learn various different queries of database,fetch data from the phpmyadmin,
+basic of database connectivity.
+
+Then try to run different forms related to js validation.
+
+Basic of OOPS concept in PHP.(object,class,inheritance,constructors)
+
