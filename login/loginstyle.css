@@ -1,0 +1,28 @@
+.content
+		{
+			margin:40px;
+			border-color: black;
+			border-style: solid;
+            width:30%;
+            background-color: rgb(227, 240, 168);
+			
+		}
+.email
+        {
+            width:70%;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+.password
+        {
+            width:70%;
+            padding: 10px;
+        }
+.btn
+        {
+            width:80%;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: orangered;
+        }
