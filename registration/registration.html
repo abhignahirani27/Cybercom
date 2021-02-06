@@ -1,77 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<style>
-		.main
-		{
-			width:35%;
-			border-color:black;
-			border-style: solid;
-			margin: 30px;
-			padding-bottom: 50px;
-		}
-		#name,#email,#password,#cpassword
-		{
-			width: 300px;
-		}
-		select
-		{
-			width: 310px;
-		}
-		button
-		{
-			width: 310px;
-			background-color: orange;
-			content: center;
-			border-color: orange;
-			color: white; 
-		}
-		#terms
-		{
-			float: left;
-			padding-left: 30px;
-			margin-left: 80px;
-		}
-		.lab1
-		{
-			float: left;
-			margin-left:5px;
-		}
-	</style>
+	<title>Registration Form</title>
+
+        <!-- stylesheet added -->
+        <link rel="stylesheet" href="registrationstyle.css">
 </head>
 <body>
 	<div>
 		<div class="main">
 			<center>
 				<h2>Registration</h2>
-				
-				<form name="myform1" method="POST" onsubmit="return register()" class="myform1">
-				<input type="textbox" name="Name" placeholder="Name" id="name"><br><br>
-				<input type="email" name="Email" placeholder="Email" id="email"><br><br>
-				<input type="password" name="Password" placeholder="Password" id="password"><br><br>
-				<input type="password" name="CPassword" placeholder="Confirm Password" id="cpassword"><br><br>
-				<select name="city" id="city">
-					<option value="city"disabled selected hidden>select city</option>
+                <form  action="login.html" method="POST" class="myform1" onsubmit="return register()">
+
+				<input type="textbox" name="username" placeholder="Name" id="username"><br>
+                <span id="msgName" class="form-text text-muted"></span><br><br>
+
+				<input type="email" name="email" placeholder="Email" id="email">
+                <br><br><br>
+
+				<input type="password" name="password" placeholder="Password" id="password"><br>
+                <br><br>
+
+				<input type="password" name="cPassword" placeholder="Confirm Password" id="cpassword"><br>
+                <span id="msgConfirmPassword" class="form-text text-muted"></span><br><br>
+
+				<select name="city" id="city" class="form-control">
+					<option value="city" disabled selected hidden>Select city</option>
 					<option value="Pune">Pune</option>
 					<option value="Delhi">Delhi</option>
 					<option value="Mumbai">Mumbai</option>
 					<option value="Rajkot">Rajkot</option>
-				</select><br><br>
-				<select name="state" id="state">
-					<option value="state"disabled selected hidden>select state</option>
+                <span id="msgCity" class="form-text text-muted"></span></select><br><br><br>
+
+				<select name="state" id="state" class="form-control">
+					<option value="state" disabled selected hidden>Select state</option>
 					<option value="Rajasthan">Rajasthan</option>
 					<option value="Harayan">Harayan</option>
 					<option value="Delhi">Delhi</option>
 					<option value="Gujarat">Gujarat</option>
-				</select><br><br>
+				<span id="msgCity" class="form-text text-muted"></span></select><br><br><br>
+
 				<input type="checkbox" name="terms" id="terms">
+
 				<label for="terms" class="lab1">Terms and Conditon</label>
 				<br><br>
-				<button>Register</button>
-				</form>
+
+                <button type="submit" class="btn" id="btn_reg">Register</button>
 			</center>
+            </form>
 		</div>
 	</div>
+
+    <script src="registration.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

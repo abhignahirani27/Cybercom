@@ -1,0 +1,36 @@
+.main
+		{
+			width:35%;
+			border-color:black;
+			border-style: solid;
+			margin: 30px;
+			padding-bottom: 50px;
+		}
+		#username,#email,#password,#cpassword
+		{
+			width: 300px;
+		}
+		select
+		{
+			width: 310px;
+		}
+		#terms
+		{
+			float: left;
+			padding-left: 30px;
+			margin-left: 80px;
+		}
+		.lab1
+		{
+			float: left;
+			margin-left:5px;
+		}
+        .btn{
+            border-radius: 20px;
+            width: 310px;
+			background-color: orange;
+			content: center;
+			border-color: orange;
+			color: white; 
+            
+        }
