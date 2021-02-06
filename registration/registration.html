@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.main
+		{
+			width:35%;
+			border-color:black;
+			border-style: solid;
+			margin: 30px;
+			padding-bottom: 50px;
+		}
+		#name,#email,#password,#cpassword
+		{
+			width: 300px;
+		}
+		select
+		{
+			width: 310px;
+		}
+		button
+		{
+			width: 310px;
+			background-color: orange;
+			content: center;
+			border-color: orange;
+			color: white; 
+		}
+		#terms
+		{
+			float: left;
+			padding-left: 30px;
+			margin-left: 80px;
+		}
+		.lab1
+		{
+			float: left;
+			margin-left:5px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div class="main">
+			<center>
+				<h2>Registration</h2>
+				<input type="textbox" name="Name" placeholder="Name" id="name"><br><br>
+				<input type="email" name="Email" placeholder="Email" id="email"><br><br>
+				<input type="password" name="Password" placeholder="Password" id="password"><br><br>
+				<input type="password" name="CPassword" placeholder="Confirm Password" id="cpassword"><br><br>
+				<select name="city" id="city">
+					<option value="city"disabled selected hidden>select city</option>
+					<option value="Pune">Pune</option>
+					<option value="Delhi">Delhi</option>
+					<option value="Mumbai">Mumbai</option>
+					<option value="Rajkot">Rajkot</option>
+				</select><br><br>
+				<select name="state" id="state">
+					<option value="state"disabled selected hidden>select state</option>
+					<option value="Rajasthan">Rajasthan</option>
+					<option value="Harayan">Harayan</option>
+					<option value="Delhi">Delhi</option>
+					<option value="Gujarat">Gujarat</option>
+				</select><br><br>
+				<input type="checkbox" name="terms" id="terms">
+				<label for="terms" class="lab1">Terms and Conditon</label>
+				<br><br>
+				<button>Register</button>
+			</center>
+		</div>
+	</div>
+</body>
+</html>
