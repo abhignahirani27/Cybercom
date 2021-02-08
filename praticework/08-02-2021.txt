@@ -1,0 +1,7 @@
+                                PHP Pratice
+
+Today in morning watch the remaining vedios of PHP in that vedios different queries are performed in PHPMyAdmin
+such as INSERT,UPDATE,DELETE,LIKE,JOINS(Left,Right)etc
+
+Then try the given application in work.Different web pages are created today and some javascript validation is 
+done.  

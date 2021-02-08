@@ -1,0 +1,57 @@
+body{
+    margin:0;
+    padding:0;
+}
+
+.header{
+	background-color: blue;
+	padding: 20px 30px;
+}
+.txt{
+	margin-left: 60px;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;  
+}
+
+.link{
+	float: right;
+	margin-right: 60px;
+
+
+}
+.active{
+	float: right;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;	
+	padding: 0px 10px;
+}
+.header a{
+	float: left;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;	
+	padding: 0px 10px;
+}
+.details{
+	margin: 0px 60px;
+}
+.btn1{
+    background-color: lightgreen;
+    margin:10px;
+    padding: 10px;
+    width:30%;
+    margin-left:2px;
+}
+span{
+    color:red;
+}
+.box{
+    width:90%;
+    padding:10px;
+    margin: 20px;
+    margin-left:2px;
+}
+
