@@ -1,13 +1,14 @@
 <?php
 namespace Block\Admin\Attribute\Edit\Tabs;
-\Mage::loadFileByClassName("Block\Core\Template");
-class Option extends \Block\Core\Template
+\Mage::loadFileByClassName("Block\Core\Edit");
+
+class Option extends \Block\Core\Edit
 {
     protected $attribute = null;
 
     public function __construct()
     {
-        $this->setTemplate('View/admin/attribute/edit/tabs/option.php');
+        $this->setTemplate('./View/admin/attribute/edit/tabs/option.php');
     }
 
     public function setAttribute($attribute = NULL)

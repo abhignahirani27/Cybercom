@@ -2,9 +2,9 @@
 
 namespace Block\Admin\Product\Edit\Tabs;
 
-\Mage::getBlock("Block\Core\Template");
+\Mage::getBlock("Block\Core\Edit");
 
-class Category extends \Block\Core\Template
+class Category extends \Block\Core\Edit
 {
     function __construct()
     {   

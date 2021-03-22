@@ -89,14 +89,28 @@ class Product extends \Controller\Core\Admin{
     public function productUpdateAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Product\Edit');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\Product\Edit\Tabs'));
-            $layout->setTemplate('./View/core/layout/three_column.php');
+            $layout = $this->getLayout(); 
             $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $layout->setTemplate('./View/core/layout/three_column.php');
+            $product = \Mage::getModel('Model\Product');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $product = $product->load($id);
+            }
+            $editBlock =  \Mage::getBlock('Block\Admin\Product\Edit')->setTableRow($product);
+
+            //print_r($edit);die;
+            // $edit->setTableRow($product);
+            $content->addChild($editBlock);
+            echo $this->toHtmlLayout();
+
+            // $gridBlock = \Mage::getBlock('Block\Admin\Product\Edit');
+            // $gridBlock->setController($this);
+            // $layout = $this->getLayout();
+            // $layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\Product\Edit\Tabs'));
+            // $layout->setTemplate('./View/core/layout/three_column.php');
+            // $content = $layout->getChild('content');
+            // $content->addChild($gridBlock);
+            // $this->toHtmlLayout();
 
         
         }catch(Exception $e){
@@ -135,14 +149,17 @@ class Product extends \Controller\Core\Admin{
             $ids = $this->getRequest()->getPost('delete');
             if($ids){
                 $media->setPrimaryKey('mediaId');
-                foreach($ids as $key=>$value){
+                
+                foreach ($ids as $key => $value) {
                     $media->load($key);
-                    if(unlink($media->image)){
-                        $media->delete();
+                    $id = $media->mediaId;
+                    $query = "Delete FROM `product_media` WHERE `mediaId` = $id"; 
+                    if (unlink($media->image)) {
+                        $media->delete($query);
                     }
                 }
             }
-            header("location:".$this->getUrl('productUpdate'));
+            header("location:".$this->getUrl('productUpdate'));          
         }
 
         if($this->getRequest()->getPost('update')){

@@ -51,13 +51,17 @@ class CustomerGroup extends \Controller\Core\Admin
 
     public function customerGroupUpdateAction(){
         try{
-            $edit =  \Mage::getBlock('Block\Admin\CustomerGroup\Edit');
-            $edit->setController($this);
             $layout = $this->getLayout(); 
-            $layout->setTemplate('./View/core/layout/three_column.php');
             $content = $layout->getChild('content');
-            $content->addChild($edit);
-            $this->toHtmlLayout();
+            $layout->setTemplate('./View/core/layout/three_column.php');
+            $customerGroup = \Mage::getModel('Model\CustomerGroup');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $customerGroup = $customerGroup->load($id);
+            }
+            $editBlock =  \Mage::getBlock('Block\Admin\CustomerGroup\Edit')->setTableRow($customerGroup);
+            $content->addChild($editBlock);
+            echo $this->toHtmlLayout();
+
         }
         catch (Exception $e) {
             $e->getMessage();

@@ -103,14 +103,17 @@ class Customer extends \Controller\Core\Admin{
     public function customerUpdateAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Customer\Edit');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\Customer\Edit\Tabs'));
-            $layout->setTemplate('./View/core/layout/three_column.php');
+            $layout = $this->getLayout(); 
             $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $layout->setTemplate('./View/core/layout/three_column.php');
+            $customer = \Mage::getModel('Model\Customer');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $customer = $customer->load($id);
+            }
+            $editBlock =  \Mage::getBlock('Block\Admin\Customer\Edit')->setTableRow($customer);
+
+            $content->addChild($editBlock);
+            echo $this->toHtmlLayout();
 
         
         }catch(Exception $e){

@@ -10,7 +10,7 @@ class Front {
 
 		$actionName = $request->getActionName()."Action";
 
-		$controllerName = self::prepareClassName($controllerName, "Controller\Admin");
+		$controllerName = self::prepareClassName($controllerName, "Controller");
 		$controller = \Mage::getController($controllerName);
 
 		$controller->$actionName();

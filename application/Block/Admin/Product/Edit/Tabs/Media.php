@@ -1,8 +1,8 @@
 <?php
 namespace Block\Admin\Product\Edit\Tabs;
-\Mage::getBlock("Block\Core\Template");
+\Mage::getBlock("Block\Core\Edit");
 
-class Media extends \Block\Core\Template
+class Media extends \Block\Core\Edit
 {
     protected $media = null;
     function __construct()

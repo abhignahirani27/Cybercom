@@ -1,49 +1,18 @@
 <?php
 
 namespace Block\Admin\Attribute;
-\Mage::loadFileByClassName("Block\Core\Template");
-class Edit extends \Block\Core\Template
+\Mage::loadFileByClassName('Block\Core\Edit');
+
+class Edit extends \Block\Core\Edit
 {
-
-    protected $attribute = null;
-
-    function __construct()
+    
+    public function __construct()
     {
-        $this->setTemplate('View/admin/attribute/attributeUpdate.php');
-    }
+       parent::__construct();
+       $this->setTabClass(\Mage::getBlock('Block\Admin\Attribute\Edit\Tabs'));
 
-    public function getTabContent()
-    {
-        $tabBlock = \Mage::getBlock('Block\Admin\Attribute\Edit\Tabs');
-        $tabs = $tabBlock->getTabs();
-        $tab = $this->getRequest()->getGet('tabs', $tabBlock->getDefaultTab());
-        if (!array_key_exists($tab, $tabs)) {
-            return null;
-        }
-        $blockClassName = $tabs[$tab]['block'];
-        $block = \Mage::getBlock($blockClassName);
-        echo $block->toHtml();
+       //$this->setTemplate('./View/admin/attribute/productUpdate.php'); 
     }
-
-    public function setAttribute($attribute = NULL)
-    {
-        if ($attribute) {
-            $this->attribute = $attribute;
-            return $this;
-        }
-        $attribute = \Mage::getModel('Model\Attribute');
-
-        if ($id = $this->getRequest()->getGet('attributeId')) {
-            $attribute = $attribute->load($id);
-        }
-        $this->attribute = $attribute;
-        return $this;
-    }
-    public function getAttribute()
-    {
-        if (!$this->attribute) {
-            $this->setAttribute();
-        }
-        return $this->attribute;
-    }
+    
 }
+?>

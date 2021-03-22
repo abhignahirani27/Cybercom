@@ -1,8 +1,8 @@
 <?php
 namespace Block\Admin\Customer\Edit\Tabs;
-\Mage::getBlock("Block\Core\Template");
+\Mage::getBlock("Block\Core\Edit");
 
-class Address extends \Block\Core\Template
+class Address extends \Block\Core\Edit
 {
     protected $address = [];
     public function __construct()
@@ -18,17 +18,12 @@ class Address extends \Block\Core\Template
         if($id = $this->getRequest()->getGet('id')){
             $query = "SELECT * FROM `customer_address` WHERE `customerId`={$id}";
             $array = $customer->fetchAll($query);
-            // echo "<pre>";
-            // print_r($array);
-            // die();
             if($array){
                 foreach($array as $key=>$value){
                     $this->address[] = $value->getData();
-                }
+                }   
             }
         }        
-        // print_r($this->address);
-        // die();
         return $this;
     }
     

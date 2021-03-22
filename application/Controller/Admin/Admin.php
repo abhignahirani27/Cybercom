@@ -58,14 +58,16 @@ class Admin extends \Controller\Core\Admin{
     public function adminUpdateAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Admin\Edit');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $layout->setTemplate('./View/core/layout/three_column.php');
+            $layout = $this->getLayout(); 
             $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
-
+            $layout->setTemplate('./View/core/layout/three_column.php');
+            $admin = \Mage::getModel('Model\Admin');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $admin = $admin->load($id);
+            }
+            $editBlock =  \Mage::getBlock('Block\Admin\Admin\Edit')->setTableRow($admin);
+            $content->addChild($editBlock);
+            echo $this->toHtmlLayout();
         
         }catch(Exception $e){
             echo $e->getMessage();

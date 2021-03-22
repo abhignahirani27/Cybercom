@@ -4,26 +4,6 @@ namespace Controller\Admin\Product;
 
 class GroupPrice extends \Controller\Core\Admin
 {
-    public function indexAction()
-    {
-        try{
-            $productId = (int)$this->getRequest()->getGet('id');
-            $product = \Mage::getModel('Model\Product')->load($productId);
-            
-            if (!$product) {
-                throw new \Exception("Record Not Found", 1);
-           }
-
-            $layout = $this->getLayout();
-            $layout->setTemplate('./View/core/layout/three_column.php');
-            $grid = \Mage::getBlock('Block\Admin\Product\Edit\Tabs\GroupPrice')->setProduct($product);
-            $content = $layout->getContent()->addChild($grid);
-            $this->toHtmlLayout();
-
-        } catch (Exception $e){
-            echo $e->getMessage();
-        }
-    }
 
     public function saveAction()
     {
@@ -52,7 +32,7 @@ class GroupPrice extends \Controller\Core\Admin
             $groupPrice->save();
         }
         
-        $this->redirect('index');
+        $this->redirect('productUpdate','product');
     }
 
 }

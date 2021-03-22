@@ -17,12 +17,16 @@ class Attribute extends \Controller\Core\Admin
 
     public function attributeUpdateAction()
     {
-        $edit = \Mage::getBlock('Block\Admin\Attribute\Edit');
-
-        $layout = $this->getLayout()->setTemplate('View/core/layout/three_column.php');
-        $layout->getContent()->addChild($edit);
-        $layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\Attribute\Edit\Tabs'));
-        echo $layout->toHtml();
+        $layout = $this->getLayout(); 
+        $content = $layout->getChild('content');
+        $layout->setTemplate('./View/core/layout/three_column.php');
+        $attribute = \Mage::getModel('Model\Attribute');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $attribute = $attribute->load($id);
+            }
+        $editBlock =  \Mage::getBlock('Block\Admin\Attribute\Edit')->setTableRow($attribute);
+        $content->addChild($editBlock);
+        echo $this->toHtmlLayout();
     }
 
     public function saveAction()
@@ -36,24 +40,6 @@ class Attribute extends \Controller\Core\Admin
         }
         $attribute->setData($data);
         $attribute->save();
-        $this->redirect('grid', null, null, true);
-    }
-
-    public function optionAction()
-    {
-        $option = \Mage::getModel('Model\Attribute\Option');
-        if ($id = $this->getRequest()->getGet('optionId')) {
-            $option->load($id);
-        }
-        $optionBlock = \Mage::getBlock('Block\Admin\Attribute\Edit\Tabs\Option');
-        $optionBlock->setAttribute($option);
-        $layout = $this->getLayout();
-        $layout->getContent()->addChild($optionBlock);
-        echo $layout->toHtml();
-    }
-
-    public function updateAction()
-    {
         $this->redirect('grid', null, null, true);
     }
 

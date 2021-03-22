@@ -57,14 +57,19 @@ class CmsPage extends \Controller\Core\Admin{
     public function cmsPageUpdateAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\CmsPage\Edit');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $layout->setTemplate('./View/core/layout/three_column.php');
+            $layout = $this->getLayout(); 
             $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $layout->setTemplate('./View/core/layout/three_column.php');
+            $cmsPage = \Mage::getModel('Model\CmsPage');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $cmsPage = $cmsPage->load($id);
+            }
+            $editBlock =  \Mage::getBlock('Block\Admin\CmsPage\Edit')->setTableRow($cmsPage);
 
+            //print_r($edit);die;
+            // $edit->setTableRow($cmsPage);
+            $content->addChild($editBlock);
+            echo $this->toHtmlLayout();
         
         }catch(Exception $e){
             echo $e->getMessage();

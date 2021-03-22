@@ -58,13 +58,16 @@ class Shipping extends \Controller\Core\Admin{
     public function shippingUpdateAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Shipping\Edit');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $layout->setTemplate('./View/core/layout/three_column.php');
+            $layout = $this->getLayout(); 
             $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $layout->setTemplate('./View/core/layout/three_column.php');
+            $shipping = \Mage::getModel('Model\Shipping');
+            if ($id = (int)$this->getRequest()->getGet('id')){   
+                $shipping = $shipping->load($id);
+            }
+            $editBlock =  \Mage::getBlock('Block\Admin\Shipping\Edit')->setTableRow($shipping);
+            $content->addChild($editBlock);
+            echo $this->toHtmlLayout();
 
         
         }catch(Exception $e){

@@ -59,15 +59,18 @@ class Payment extends \Controller\Core\Admin{
     public function paymentUpdateAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Payment\Edit');
-            $gridBlock->setController($this);
+            
             $layout = $this->getLayout();
-            $layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\Payment\Edit\Tabs'));
-            $layout->setTemplate('./View/core/layout/three_column.php');
             $content = $layout->getChild('content');
+            $payment = \Mage::getModel('Model\Payment');
+            if ($id = $this->getRequest()->getGet('id')){   
+                $payment = $payment->load($id);
+            }   
+            $gridBlock = \Mage::getBlock('Block\Admin\Payment\Edit')->setTableRow($payment);
+            //$layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\Payment\Edit\Tabs'));
+            $layout->setTemplate('./View/core/layout/three_column.php');
             $content->addChild($gridBlock);
             $this->toHtmlLayout();
-
         
         }catch(Exception $e){
             echo $e->getMessage();
