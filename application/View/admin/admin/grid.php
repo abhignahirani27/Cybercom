@@ -4,10 +4,11 @@
    <br><br><br>
    <div id="main-content">
        <h2 style="text-align: center;">Records</h2>
-       <a href="<?php echo $this-> getUrl('adminUpdate') ?>" class="btn btn-info" role="button">Add Records</a><br><br>
+       <a href="<?php echo $this-> getUrl('adminUpdate') ?>" class="btn btn-info" role="button">Add Records</a>
+       <a href="<?php echo $this-> getUrl('grid') ?>" class="btn btn-info" role="button">Apply Filter</a><br><br>
 
        <div class="table_data">
-           <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
+           <table  border="3px" cellpadding="10px" align="center" width="100%" class="table table-striped" style="border-collapse:collapse">
                <thead>
                    <th>Id</th>
                    <th>Name</th>
@@ -18,7 +19,16 @@
                    <th colspan="2">Action</th>
                </thead>
                
-               <tbody id="data-table" align="center">
+               <tbody align="center">
+                    <tr>
+                        <td><input type="text" name="filter[Id]" size="10"></td>
+                        <td><input type="text" name="filter[Name]" size="10"></td>
+                        <td><input type="text" name="filter[Password]" size="10"></td>
+                        <td><input type="text" name="filter[Status]" size="10"></td>
+                        <td><input type="text" name="filter[createdDate]" size="10"></td>
+                        <td><input type="text" name="filter[updatedDate]" size="10"></td>
+                        <td colspan="2"></td>
+                    </tr>
                <?php if(!$row): ?>
                     <tr>
                         <td colspan="7">No Data Found!!!</td>

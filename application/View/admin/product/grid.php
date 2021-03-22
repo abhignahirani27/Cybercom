@@ -20,7 +20,7 @@
                     <th>Status</th>
                     <th>CreatedDate</th>
                     <th>UpdatedDate</th>
-                    <th colspan="3">Action</th>
+                    <th colspan="2">Action</th>
                 </thead>
                 
                 <tbody id="data-table" align="center">
@@ -44,7 +44,6 @@
                         <td><?php echo $value->updatedDate; ?></td>
                         <td><a href='<?php echo $this->getUrl('productUpdate', null, ['id' => $value->productId]) ?>' class="btn btn-Success" role="button">Update</a></td>       
                         <td><a href='<?php echo $this->getUrl('productDelete', null, ['id' => $value->productId]) ?>' class="btn btn-danger" role="button">Delete</a></td>
-                        <td><a href='<?php echo $this->getUrl('index','product_groupPrice', ['id' => $value->productId]) ?>' class="btn btn-info btn-sm">Group Price</a></td>
 
                     </tr>
                 <?php } endif; ?>

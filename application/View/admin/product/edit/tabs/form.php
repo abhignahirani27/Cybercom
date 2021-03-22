@@ -1,5 +1,5 @@
 <?php
-$product = $this->getProduct();
+$product = $this->getTableRow();
 $option = $product->getStatusOption();
 ?>
 

@@ -1,7 +1,9 @@
 <?php
-$payment = $this->getPayment();
+$payment = $this->getTableRow();
 $option = $payment->getStatusOption();
 ?>
+
+<h2 style="text-align:center ;">Payment Add/Update Form</h2><br><br>
 <div class="row">
             <div class="col-lg-6">
 

@@ -1,6 +1,5 @@
 <?php
-$category = $this->getCategory();
-$categories = $this->getCategories();
+$category = $this->getTableRow();
 $option = $category->getStatusOption();
 $categoryOptions =$this->getCategoryOptions();
 ?>

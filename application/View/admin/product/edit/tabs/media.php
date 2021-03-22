@@ -3,8 +3,8 @@
 <h2 style="text-align:center;">Product Media</h2>
 <form action="<?php echo $this->getUrl('productMedia'); ?>" enctype="multipart/form-data" method="POST">
 
-<input type="submit" name="update" value="Update" style="margin-left:800px; margin-bottom:20px;" class="btn btn-primary">
-<input type="submit" name="remove" value="Remove" style="margin-left:20px; margin-bottom:20px" class="btn btn-primary">
+<input type="submit" name="update" value="Update" style="margin-left:800px; margin-bottom:10px" class="btn btn-primary">
+<input type="submit" name="remove" value="Remove" style="margin-left:800px; margin-bottom:20px" class="btn btn-primary">
 
     <table border="2" style="width:100%">
         <tr class="table table-dark" style="color:black;">

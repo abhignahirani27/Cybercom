@@ -6,33 +6,36 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;" href="http://localhost/application/index.php?c=product&a=grid">Product</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;" href="<?php echo $this->getUrl('grid','Admin\dashboard',null,true); ?>">Dashboard</a>
+            </li>
+            <li class="nav-item ">
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;" href="<?php echo $this->getUrl('grid','Admin\product',null,true); ?>">Product</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;"  href="http://localhost/application/index.php?c=category&a=grid">Category</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;"  href="<?php echo $this->getUrl('grid','Admin\category',null,true); ?>">Category</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;"  href="http://localhost/application/index.php?c=customer&a=grid">Customer</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;"  href="<?php echo $this->getUrl('grid','Admin\customer',null,true); ?>">Customer</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;"  href="http://localhost/application/index.php?c=customergroup&a=grid">Customer Group</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;"  href="<?php echo $this->getUrl('grid','Admin\customergroup',null,true); ?>">Customer Group</a>
             </li>
 </ul>
 <ul class="navbar-nav">
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;"  href="http://localhost/application/index.php?c=shipping&a=grid">Shipping Method</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;"  href="<?php echo $this->getUrl('grid','Admin\shipping',null,true); ?>">Shipping Method</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;" href="http://localhost/application/index.php?c=payment&a=grid">Payment Method</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;" href="<?php echo $this->getUrl('grid','Admin\payment',null,true); ?>">Payment Method</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;" href="http://localhost/application/index.php?c=attribute&a=grid">Attribute</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;" href="<?php echo $this->getUrl('grid','Admin\attribute',null,true); ?>">Attribute</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;" href="http://localhost/application/index.php?c=cmsPage&a=grid">CMS</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;" href="<?php echo $this->getUrl('grid','Admin\cmspage',null,true); ?>">CMS</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white font-weight-bold" style="width: 7rem;" href="http://localhost/application/index.php?c=admin&a=grid">Admin</a>
+            <a class="nav-link text-white font-weight-bold" style="width: 6rem;" href="<?php echo $this->getUrl('grid','Admin\admin',null,true); ?>">Admin</a>
             </li>
         </ul>
     </nav>

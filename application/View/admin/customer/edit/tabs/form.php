@@ -1,5 +1,5 @@
 <?php
-$customer = $this->getCustomer();
+$customer = $this->getTableRow();
 $group = $this->getGroup();
 $option = $customer->getStatusOption();
 ?>

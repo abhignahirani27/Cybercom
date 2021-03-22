@@ -1,4 +1,4 @@
-<?php $attribute = $this->getAttribute(); ?>
+<?php $attribute = $this->getTableRow(); ?>
 <h1>Attribute Add/Update Form</h1>
 <form action="<?php echo $this->getUrl('save', NULL, ['id' => $attribute->attributeId], true); ?>" method="POST">
     <table>

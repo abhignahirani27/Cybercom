@@ -1,13 +1,16 @@
 <?php $attribute = $this->getAttribute();
+// echo "<pre>";
+// print_r($attribute->getOptions()->getData);
+// die;
 ?>
-<form action="<?php echo $this->getUrl('update'); ?>" method="POST">
+<form action="<?php echo $this->getUrl('update','Attribute_Option'); ?>" method="POST">
     <input type="submit" name="update" value="Update" class = "btn btn-info mr-2">
     <input type="button" name="addOption" value="Add Option" class = "btn btn-info" onclick="addRow();"><br><br>
     <table id='existingOption'>
-            <?php if (!$attribute) : ?>
+            <?php if (!$attribute->getOptions()) : ?>
                 <tr>
                     <td colspan="3">
-                        <center>No recoreds in Database.</center>
+                        <center>No records in Database.</center>
                     </td>
                 </tr>
             <?php else : ?>
@@ -25,9 +28,9 @@
     <table id='newOption'>
         <tbody>
             <tr>
-                <td><input type="text" name="name[new][]"></td>
-                <td><input type="text" name="sortOrder[new][]"></td>
-                <td><input type="submit" name="removeOption[new][]" value="Remove Option" onclick="removeRow(this)"></td>
+                <td><input type="text" name="new[name][]"></td>
+                <td><input type="text" name="new[sortOrder][]"></td>
+                <td><input type="submit" name="new[removeOption][]" value="Remove Option" onclick="removeRow(this)"></td>
             </tr>
         </tbody>
     </table>
