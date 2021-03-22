@@ -60,6 +60,21 @@ class Adapter {
         return true;
     }
 
+    public function fetchOne($query)
+    {
+        if (!$this->isConnected()) 
+        {
+        $this->connection();
+        }
+            $result = $this->getConnect()->query($query);
+            $fetchrow = $result->num_rows;
+        if (!$fetchrow) 
+        {
+            return $fetchrow;
+        }
+        return $fetchrow;
+    }
+
     public function fetchRow($query) {
         if(!$this->isConnected()) {
             $this->connection();

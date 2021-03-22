@@ -74,6 +74,8 @@ class Attribute extends Core\Table
         $query = "SELECT * FROM `{$this->getTableName()}`
         WHERE `attributeId` = '{$this->attributeId}'
         ORDER BY `sortOrder` ASC";
+        // print_r($query);
+        // die;
         $options = \Mage::getModel('Model\Attribute\Option')->fetchAll($query);
         return $options;
     }

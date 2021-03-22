@@ -26,7 +26,7 @@
                 $pathId = $this->categoryId;
             }
             else {
-                $parent = \Mage::getBlock('Block\Admin\Category\Edit')->getCategory()->load($this->parentId);
+                $parent = \Mage::getBlock('Block\Admin\Category\Edit')->getTableRow()->load($this->parentId);
                 $pathId = $parent->pathId."=".$this->categoryId;
             }
             $this->pathId = $pathId;
