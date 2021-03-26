@@ -80,3 +80,4 @@ class Attribute extends Core\Table
         return $options;
     }
 }
+
