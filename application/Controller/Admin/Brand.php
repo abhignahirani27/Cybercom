@@ -4,13 +4,14 @@ namespace Controller\Admin;
 \Mage::loadFileByClassName('Block\Core\Layout');
 
 
-class CmsPage extends \Controller\Core\Admin{
-    protected $cmsPages = [];
-
+class Brand extends \Controller\Core\Admin{
+    protected $brands = [];
+    
+    
     public function gridAction (){
        
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\CmsPage\Grid');
+            $gridBlock = \Mage::getBlock('Block\Admin\Brand\Grid');
             $gridBlock->setController($this);
             $layout = $this->getLayout();
             $content = $layout->getChild('content');
@@ -27,24 +28,37 @@ class CmsPage extends \Controller\Core\Admin{
     public function saveAction(){
 
         try{
-            $cmsPage = \Mage::getModel('Model\CmsPage');
+            $brand = \Mage::getModel('Model\Brand');
 
             if(!$this->getRequest()->isPost()){
                 throw new \Exception ("Invalid Request");
             }
             if ($id = $this->getRequest()->getGet('id')) {
-                $cmsPage = $cmsPage->load($id);
-                if (!$cmsPage){
+                $brand = $brand->load($id);
+                if (!$brand){
                     throw new \Exception ("Records not found.");
                 }
-                // $cmsPage->updatedDate = date("Y-m-d H:i:s");
             }
             else {
-                $cmsPage->createdDate = date("Y-m-d H:i:s");
+                $brand->createdDate = date("Y-m-d H:i:s");
             }
-            $cmsPageData = $this->getRequest()->getPost('cmsPage'); 
-            $cmsPage->setData($cmsPageData);
-            $cmsPage->save();
+            if($this->getRequest()->getPost('image')){
+                $name = $_FILES['imagefile']['name'];
+                $type = $_FILES['imagefile']['type'];
+                $tmp_name = $_FILES['imagefile']['tmp_name'];
+                $location = 'skin/admin/upload/';
+    
+                if(move_uploaded_file($tmp_name,$location.$name)){
+                    $media->$Pid = $id;
+                    $data = $media->getData();
+                    $query = "INSERT INTO `{$media->getTableName()}` (".implode(",", array_keys($data)) . ") VALUES ('" . implode("','", array_values($data)) . "')";
+                    $media->save($query);
+                    header("location:".$this->getUrl('grid'));
+                }
+            }
+            $brandData = $this->getRequest()->getPost('brand'); 
+            $brand->setData($brandData);
+            $brand->save();
             $this->getMessage()->setSuccess('Record Inserted Successfully.');    
         }
         catch(\Exception $e){
@@ -54,43 +68,42 @@ class CmsPage extends \Controller\Core\Admin{
         $this->redirect("grid",null,null,true);
     }
        
-    public function cmsPageUpdateAction()
+    public function brandUpdateAction()
     {
         try{
-            $layout = $this->getLayout(); 
+            
+            $layout = $this->getLayout();
             $content = $layout->getChild('content');
+            $brand = \Mage::getModel('Model\Brand');
+            if ($id = $this->getRequest()->getGet('id')){   
+                $brand = $brand->load($id);
+            }   
+            $gridBlock = \Mage::getBlock('Block\Admin\Brand\Edit')->setTableRow($brand);
+            //$layout->getLeft()->addChild(\Mage::getBlock('Block\Admin\brand\Edit\Tabs'));
             $layout->setTemplate('./View/core/layout/three_column.php');
-            $cmsPage = \Mage::getModel('Model\CmsPage');
-            if ($id = (int)$this->getRequest()->getGet('id')){   
-                $cmsPage = $cmsPage->load($id);
-            }
-            $editBlock =  \Mage::getBlock('Block\Admin\CmsPage\Edit')->setTableRow($cmsPage);
-
-            //print_r($edit);die;
-            // $edit->setTableRow($cmsPage);
-            $content->addChild($editBlock);
-            echo $this->toHtmlLayout();
+            $content->addChild($gridBlock);
+            $this->toHtmlLayout();
         
         }catch(\Exception $e){
             echo $e->getMessage();
         }
         
-        //require_once './View/admin/cmsPage/cmsPageUpdate.php';
+        //require_once './View/admin/brand/brandUpdate.php';
         
     }
     
     
-    public function cmsPageDeleteAction()
+    public function brandDeleteAction()
     {
         try{
             $id = $this->getRequest()->getGet('id');
             if(!$id){
                 throw new \Exception("Invalid ID.");    
             }
-            $cmsPage = \Mage::getModel('Model\CmsPage');
-            //$cmsPage = $this->getcmsPage();
-            $cmsPage->load($id);
-            if($cmsPage->delete()) {
+            $brand = \Mage::getModel('Model\Brand');
+            //$brand = $this->getbrand();
+            $brand->load($id);
+            if($brand->delete()) {
                 $this->getMessage()->setSuccess('Record Deleted Successfully.');
             }
             else {
@@ -102,10 +115,13 @@ class CmsPage extends \Controller\Core\Admin{
         }  
         $this->redirect("grid",null,null,true);
     }
-    
+
 }
 
 
 ?>
+
+
+
 
 

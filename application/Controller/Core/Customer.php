@@ -4,15 +4,15 @@ namespace Controller\Core;
 \Mage::loadFileByClassName('Block\Core\Layout');
 \Mage::loadFileByClassName('Controller\Core\Abstracts');
 
-class Admin extends \Controller\Core\Abstracts{
+class Customer extends \Controller\Core\Abstracts{
 	// protected $request = Null;
 	// protected $layout = Null;
 	// protected $message = Null;
 
 	// public function __construct() {
-		// $this->setRequest();
-		// $this->setLayout();
-		// $this->setMessage();
+	// 	$this->setRequest();
+	// 	$this->setLayout();
+	// 	$this->setMessage();
 	// }
 	// public function setRequest() {
 	// 	$this->request = \Mage::getModel('Model\Core\Request');
@@ -26,7 +26,7 @@ class Admin extends \Controller\Core\Abstracts{
 	// }
 	public function setLayout($layout=null) {
 		if(!$layout){
-			$layout = \Mage::getBlock('Block\Admin\Layout');
+			$layout = \Mage::getBlock('Block\Customer\Layout');
 		}
 		$this->layout = $layout;
 		return $this;
@@ -78,7 +78,7 @@ class Admin extends \Controller\Core\Abstracts{
 	// }
 	public function setMessage($message = null)
 	{
-		$this->message =  \Mage::getModel('Model\Admin\Message');
+		$this->message =  \Mage::getModel('Model\Customer\Message');
 		return $this;
 	}
 	

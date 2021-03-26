@@ -50,7 +50,7 @@ class Product extends \Controller\Core\Admin{
             $content->addChild($gridBlock);
             $this->toHtmlLayout();
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
     }
@@ -79,7 +79,7 @@ class Product extends \Controller\Core\Admin{
             $product->save();
             $this->getMessage()->setSuccess('Record Inserted Successfully.');    
         }
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
@@ -113,7 +113,7 @@ class Product extends \Controller\Core\Admin{
             // $this->toHtmlLayout();
 
         
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
         
@@ -213,6 +213,18 @@ class Product extends \Controller\Core\Admin{
         }  
         $this->redirect("grid",null,null,true);
     }
+
+    public function filterAction()
+    {
+        $filters = $this->getRequest()->getPost('filter');
+        $filterModel = \Mage::getModel('Model\Admin\Filter');
+        $filterModel->setFilter($filters);
+        $filterValues = $filterModel->getFilterValue('name','quantity');
+        print_r($filterValues);
+        die();
+    }
+    
+
     
 }
 

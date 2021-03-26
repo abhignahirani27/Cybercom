@@ -17,7 +17,7 @@ class Customer extends \Controller\Core\Admin{
             $content->addChild($gridBlock);
             $this->toHtmlLayout();
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
     }
@@ -51,7 +51,7 @@ class Customer extends \Controller\Core\Admin{
             $customer->save();
             $this->getMessage()->setSuccess('Record Inserted Successfully.');    
         }
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
@@ -93,7 +93,7 @@ class Customer extends \Controller\Core\Admin{
             }else{
                 throw new \Exception("Unable To Update");
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
         }
         $this->redirect("grid",null,null,true);
@@ -116,7 +116,7 @@ class Customer extends \Controller\Core\Admin{
             echo $this->toHtmlLayout();
 
         
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
         

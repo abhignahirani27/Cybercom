@@ -5,6 +5,7 @@ namespace Block\Admin\Attribute;
 class Grid extends \Block\Core\Template
 {
     protected $attributes = [];
+    protected $columns = [];
 
     public function __construct()
     {
@@ -27,4 +28,5 @@ class Grid extends \Block\Core\Template
         }
         return $this->attributes;
     }
+
 }

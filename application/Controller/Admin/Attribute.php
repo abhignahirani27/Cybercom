@@ -5,7 +5,7 @@ namespace Controller\Admin;
 
 class Attribute extends \Controller\Core\Admin
 {
-
+            
     public function gridAction()
     {
         $grid = \Mage::getBlock('Block\Admin\Attribute\Grid');
@@ -57,4 +57,19 @@ class Attribute extends \Controller\Core\Admin
         $attribute->delete();
         $this->redirect('grid', null, null, true);
     }
+
+    public function filterAction()
+    {
+        echo "<pre>";
+        $query = "SELECT * FROM `attribute` WHERE `entityTypeId` = 'product'";
+        $attributes = \Mage::getModel('Model\Attribute')->fetchAll($query);
+        print_r($attributes);
+
+        foreach ($attributes->getData() as $key => $attribute) {
+            $option = \Mage::getModel('Model\Attribute\Option');
+            $options = $option->setAttribute($attribute)->getOptions();
+            print_r($options);
+        }
+    }
+
 }

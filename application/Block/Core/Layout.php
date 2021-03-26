@@ -8,7 +8,7 @@
     class Layout extends \Block\Core\Template{
 
         public function __construct(){
-            $this->setTemplate('./View/core/layout/one_column.php');
+            $this->setTemplate('./View/admin/layout/one_column.php');
             $this->prepareChildren();
         }
         public function prepareChildren() {

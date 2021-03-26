@@ -42,7 +42,7 @@ class CustomerGroup extends \Controller\Core\Admin
             $customerGroup->save();
             $this->getMessage()->setSuccess('Record Inserted Successfully.');
         }
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }

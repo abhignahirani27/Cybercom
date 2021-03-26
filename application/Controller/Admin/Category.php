@@ -16,7 +16,7 @@ class Category extends \Controller\Core\Admin {
             $content->addChild($gridBlock);
             $this->toHtmlLayout();
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
     }
@@ -76,7 +76,7 @@ class Category extends \Controller\Core\Admin {
                 $category->updatePathId();
             }
         } 
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
@@ -120,7 +120,7 @@ class Category extends \Controller\Core\Admin {
             
             $category->delete();
         }  
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }   

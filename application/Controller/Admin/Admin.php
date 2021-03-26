@@ -17,7 +17,7 @@ class Admin extends \Controller\Core\Admin{
             $content->addChild($gridBlock);
             $this->toHtmlLayout();
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
     }
@@ -48,7 +48,7 @@ class Admin extends \Controller\Core\Admin{
             //print_r($admin);die;
             $this->getMessage()->setSuccess('Record Inserted Successfully.');    
         }
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
@@ -69,7 +69,7 @@ class Admin extends \Controller\Core\Admin{
             $content->addChild($editBlock);
             echo $this->toHtmlLayout();
         
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
         

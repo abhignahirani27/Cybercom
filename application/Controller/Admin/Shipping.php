@@ -17,7 +17,7 @@ class Shipping extends \Controller\Core\Admin{
             $content->addChild($gridBlock);
             $this->toHtmlLayout();
 
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
     }
@@ -48,7 +48,7 @@ class Shipping extends \Controller\Core\Admin{
             $shipping->save();
             $this->getMessage()->setSuccess('Record Inserted Successfully.');    
         }
-        catch(Exception $e){
+        catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
@@ -70,7 +70,7 @@ class Shipping extends \Controller\Core\Admin{
             echo $this->toHtmlLayout();
 
         
-        }catch(Exception $e){
+        }catch(\Exception $e){
             echo $e->getMessage();
         }
         
