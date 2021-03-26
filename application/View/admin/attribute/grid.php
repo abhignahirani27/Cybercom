@@ -1,6 +1,6 @@
 <?php $attributes = $this->getAttribute(); 
-// echo "<pre>";
-// print_r($attributes);
+//$columns = $this->getColumns();
+
 ?>
 <div class="container">
     <h3 style="text-align:center ;">Attributes</h3>
@@ -16,6 +16,15 @@
             <th>Sort Order</th>
             <th>BackEnd Model</th>
             <th colspan='2'>Action</th>
+        </tr>
+        <tr>
+        <?php if($columns): ?>
+            <?php foreach($columns as $key => $column): ?>
+                <td>
+                    <input type="text" name="filter[<?php echo $column['type'];?>][<?php echo $column['field'];?>]">
+                </td>
+            <?php endforeach; ?>
+        <?php endif; ?>
         </tr>
         <?php if (!$attributes) : ?>
             <tr>
