@@ -43,8 +43,8 @@ class Address extends \Model\Core\Table
         if (!$this->addressId) {
             return false;
         }
-        $query = "SELECT * FROM `customer_address` WHERE `addressId` = '{$this->addressId}' AND 'addressType' = '{\Model\Customer\Address::ADDRESS_TYPE_BILLING}'";
-        $customerBillingAddress = \Mage::getModel('Model\Customer\Address')->fetchRow($query);
+        //$query = "SELECT * FROM `customer_address` WHERE `addressId` = '{$this->addressId}' AND 'addressType' = '{\Model\Customer\Address::ADDRESS_TYPE_BILLING}'";
+        $customerBillingAddress = \Mage::getModel('Model\Customer\Address')->load($this->addressId);
         $this->setCustomerBillingAddress($customerBillingAddress);
         return $this->customerBillingAddress;
     }
@@ -60,11 +60,10 @@ class Address extends \Model\Core\Table
         if (!$this->addressId) {
             return false;
         }
-        $query = "SELECT * FROM `customer_address` WHERE `addressId` = '{$this->addressId}' AND 'addressType' = '{\Model\Customer\Address::ADDRESS_TYPE_SHIPPING}'";
-        $customerShippingAddress = \Mage::getModel('Model\Customer\Address')->fetchRow($query);
+       // $query = "SELECT * FROM `customer_address` WHERE `addressId` = '{$this->addressId}' AND 'addressType' = '{\Model\Customer\Address::ADDRESS_TYPE_SHIPPING}'";
+        $customerShippingAddress = \Mage::getModel('Model\Customer\Address')->load($this->addressId);
         $this->setCustomerShippingAddress($customerShippingAddress);
         return $this->customerShippingAddress;
     }
-
 
 }

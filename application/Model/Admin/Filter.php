@@ -4,12 +4,12 @@ namespace Model\Admin;
 
 class Filter extends \Model\Admin\Session
 {
-    public function setFilter($filters)
+    public function setFilters($filters)
     {
         if(!$filters){
             return false;
         }
-        $filters = array_filter(array_map(function($key, $value){
+        $filters = array_filter(array_map(function($value){
             $value = array_filter($value);
             return $value;
 
@@ -18,22 +18,21 @@ class Filter extends \Model\Admin\Session
         $this->filters = $filters;    
     }
 
-    public function getFilter()
+    public function getFilters()
     {
         return $this->filters;
     }
 
     public function hasFilters()
     {
-        if(!$filters){
-            return true;
+        if(!$this->filters){
+            return false;
         }
         return true;
     }
 
     public function getFilterValue($type,$key)
     {
-        print_r($this->filters);
         if(!$this->filters){
             return null;
         }
