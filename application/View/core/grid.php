@@ -5,7 +5,7 @@ $buttons = $this->getButtons();
 $columns = $this->getColumns();
 //$filter = $this->getFilterValue();
 ?>
-
+<form method="POST" action="<?php echo $this->getUrl('filter') ?>">
 <div class="container">
     <br><br><br>
     <div id="main-content">
@@ -13,9 +13,9 @@ $columns = $this->getColumns();
         <?php if($buttons): ?>
             <?php foreach ($buttons as $key => $button): ?>
                 <a class="btn btn-primary" href="<?php echo $this->getButtonUrl($button['method']); ?>"><?= $button['label']?></a>
-            <?php endforeach; ?><br><br>
+            <?php endforeach; ?>
         <?php endif; ?>
-
+        <input type="submit" value="Apply Filter"><br><br>
         <div class="table_data">
             <table  border="3px" cellpadding="10px" align="center" width="90%" class="table table-striped" style="border-collapse:collapse">
                 <thead>
@@ -45,7 +45,7 @@ $columns = $this->getColumns();
                         <?php if($columns): ?>
                             <?php foreach($columns as $key => $column): ?>
                                 <td>
-                                    <input type="text" size= "8" name="filter[<?php echo $column['type'];?>][<?php echo $column['field'];?>]">
+                                    <input type="text" size= "8" name="filter[<?php echo $column['type'];?>][<?php echo $column['field'];?>]" value="<?= $this->getFilter()->getFilterValue($column['type'],$column['field']); ?>">
                                 </td>
                             <?php endforeach; ?>
                             <td></td>
@@ -96,7 +96,7 @@ $columns = $this->getColumns();
                 </tbody>
             </table>
 
-        <?php $this->clearFilters()->hasFilters() ?>
+        <?php \Mage::getModel('Model\Admin\Filter')->clearFilters(); ?>
         </div>
         
     </div>
@@ -104,3 +104,4 @@ $columns = $this->getColumns();
             <p>I am Queen!!!!</p>
         </div>  -->
 </div>
+</form>

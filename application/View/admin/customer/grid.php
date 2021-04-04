@@ -1,8 +1,8 @@
 <?php
- //print_r($this->getCustomers());
-// require_once 'header.php';
- ?>
-<?php /*
+$customers = $this->getCustomers();
+//require_once 'header.php';
+?>
+
 <div class="container">
    <br><br>
    <div id="main-content">
@@ -10,18 +10,24 @@
        
        <a href="<?php echo $this->getUrl('customerUpdate'); ?>" class="btn btn-info" role="button">Add Records</a><br><br>
        <div class="table_data">
-           <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
+           <table  border="3px" align="center" width="50%" class="table table-striped" style="border-collapse:collapse">
                <thead>
-                   <th>Id</th>
-                   <th>Firstname</th>
-                   <th>Lastname</th>
-                   <th>Email</th>
-                   <th>GroupId</th>
-                   <th>Password</th>
-                   <th>Status</th>
-                   <th>CreatedDate</th>
-                   <th>UpdatedDate</th>
-                   <th colspan="2">Action</th>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>GroupId</th>
+                    <th>Password</th>
+                    <th>Status</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zipcode</th>
+                    <th>Country</th>
+                    <th>AddressType</th>
+                    <th>CreatedDate</th>
+                    <th>UpdatedDate</th>
+                    <th colspan="2">Action</th>
                 </thead>
                 <tbody align="center">
 
@@ -32,15 +38,21 @@
 
                    <tr>
 
-                       <td><?php echo $value->customerId; ?></td>
-                       <td><?php echo $value->firstname; ?></td>
-                       <td><?php echo $value->lastname; ?></td>
-                       <td><?php echo $value->email; ?></td>
-                       <td><?php echo $value->groupId; ?></td>
-                       <td><?php echo $value->password; ?></td>
-                       <td><?php echo $value->status; ?></td>
-                       <td><?php echo $value->createdDate; ?></td>
-                       <td><?php echo $value->updatedDate; ?></td>
+                        <td><?php echo $value->customerId; ?></td>
+                        <td><?php echo $value->firstname; ?></td>
+                        <td><?php echo $value->lastname; ?></td>
+                        <td><?php echo $value->email; ?></td>
+                        <td><?php echo $value->groupId; ?></td>
+                        <td><?php echo $value->password; ?></td>
+                        <td><?php echo $value->status; ?></td>
+                        <td><?php echo $value->address; ?></td>
+                        <td><?php echo $value->city; ?></td>
+                        <td><?php echo $value->state; ?></td>
+                        <td><?php echo $value->zipCode; ?></td>
+                        <td><?php echo $value->country; ?></td>
+                        <td><?php echo $value->addressType; ?></td>
+                        <td><?php echo $value->createdDate; ?></td>
+                        <td><?php echo $value->updatedDate; ?></td>
                        <td><a href='<?php echo $this->getUrl('customerUpdate', null, ['id' => $value->customerId]) ?>' class="btn btn-Success">Update</a></td>       
                         <td><a href='<?php echo $this->getUrl('customerDelete', null, ['id' => $value->customerId]) ?>' class="btn btn-Danger">Delete</a></td>
                    </tr>
@@ -56,12 +68,12 @@
 </div>
 </body>
 </html>
-*/?>
 
 
 
 
-<?php 
+
+<?php /*
 $customers = $this->getCustomers();
 $data = [];
 if($customers){
@@ -103,3 +115,4 @@ if($customers){
     </tr>
     <?php } endif; ?>
 </table>
+*/ ?>

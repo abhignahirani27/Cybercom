@@ -19,35 +19,35 @@ if($address){
 <div class="col-lg-6">
     <h4>Billing Address</h4>
     <label for="address" class="font-weight-bold">ADDRESS</label><br>
-    <input type="text" name="address" value="<?php 
+    <input type="text" name="address" class="form-control" value="<?php 
             if(array_key_exists('address',$billing)){
                 echo $billing['address'];
             };
         ?>"><br><br>
 
     <label for="city" class="font-weight-bold">CITY</label><br>
-    <input type="text" name="city" value="<?php 
+    <input type="text" name="city" class="form-control" value="<?php 
             if(array_key_exists('city',$billing)){
                 echo $billing['city'];
             };
         ?>"><br><br>
 
     <label for="state" class="font-weight-bold">STATE</label><br>
-    <input type="text" name="state" value="<?php 
+    <input type="text" name="state" class="form-control" value="<?php 
             if(array_key_exists('state',$billing)){
                 echo $billing['state'];
             };
         ?>"><br><br>
 
     <label for="zipcode" class="font-weight-bold">ZIPCODE</label><br>
-    <input type="text" name="zipcode" value="<?php 
+    <input type="text" name="zipcode" class="form-control" value="<?php 
             if(array_key_exists('zipcode',$billing)){
                 echo $billing['zipcode'];
             };
         ?>"><br><br>
         
     <label for="country" class="font-weight-bold">COUNTRY</label><br>
-    <input type="text" name="country" value="<?php 
+    <input type="text" name="country" class="form-control" value="<?php 
             if(array_key_exists('country',$billing)){
                 echo $billing['country'];
             };
@@ -57,35 +57,35 @@ if($address){
 <div class="col-lg-6">
     <h4>Shipping Address</h4>
     <label for="address" class="font-weight-bold">ADDRESS</label><br>
-    <input type="text" name="shippingaddress" value="<?php 
+    <input type="text" name="shippingaddress" class="form-control" value="<?php 
             if(array_key_exists('address',$shipping)){
                 echo $shipping['address'];
             };
         ?>"><br><br>
 
     <label for="city" class="font-weight-bold">CITY</label><br>
-    <input type="text" name="shippingcity" value="<?php 
+    <input type="text" name="shippingcity" class="form-control" value="<?php 
             if(array_key_exists('city',$shipping)){
                 echo $shipping['city'];
             };
         ?>"><br><br>
 
     <label for="state" class="font-weight-bold">STATE</label><br>
-    <input type="text" name="shippingstate" value="<?php 
+    <input type="text" name="shippingstate" class="form-control" value="<?php 
             if(array_key_exists('state',$shipping)){
                 echo $shipping['state'];
             };
         ?>"><br><br>
 
     <label for="zipcode" class="font-weight-bold">ZIPCODE</label><br>
-    <input type="text" name="shippingzipcode" value="<?php 
+    <input type="text" name="shippingzipcode" class="form-control" value="<?php 
             if(array_key_exists('zipcode',$shipping)){
                 echo $shipping['zipcode'];
             };
         ?>"><br><br>
 
     <label for="country" class="font-weight-bold">COUNTRY</label><br>
-    <input type="text" name="shippingcountry" value="<?php 
+    <input type="text" name="shippingcountry" class="form-control" value="<?php 
             if(array_key_exists('country',$shipping)){
                 echo $shipping['country'];
             };

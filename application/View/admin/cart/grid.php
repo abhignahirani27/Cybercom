@@ -1,55 +1,223 @@
-<?php $cartItems = $this->getCart()->getItems(); ?>
+<?php $cartItems = $this->getCart()->getItems();
+$customers = $this->getCustomers();
+$cart = $this->getCart();
+$cartBillingAddress = $this->getCustomerBillingAddress();
+$cartShippingAddress = $this->getCustomerShippingAddress();
+?>
 
 <div class="container">
-   <br><br><br>
-   <div id="main-content">
-       <h2 style="text-align: center;">Records</h2>
+    <div id="main-content">
+    <h2 style="text-align: center;">Cart Records</h2>
        
-       <div class="table_data">
-       <form method="POST" action="<?php echo $this-> getUrl('update') ?>">
-            <a href="<?php echo $this-> getUrl('grid','Admin\product') ?>" class="btn btn-info" role="button">Back to Items</a>
-            <input type = "submit" value="Update Cart" class="btn btn-info"><br><br>
+<div class="table_data">
+<form method="POST" action="<?php echo $this-> getUrl('update') ?>" id="cartForm">
+    
+    <a href="<?php echo $this-> getUrl('grid','Admin\product') ?>" class="btn btn-info" role="button">Back to Items</a>
+    <input type = "submit" value="Update Cart" class="btn btn-info ml-100 "><br><br>
 
-           <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
-               <thead>
-                   <th>Cart Item Id</th>
-                   <th>Product Id</th>
-                   <th>Quantity</th>
-                   <th>Price</th>
-                   <th>Row Total</th>
-                   <th>Discount</th>
-                   <th>Final Total</th>
-                   <th>Action</th>
-               </thead>
-               
-               <tbody align="center">
-               <?php if(!$cartItems): ?>
-                    <tr>
-                        <td colspan="8">No Data Found!!!</td>
-                    </tr>
-                <?php else : ?> 
-                <?php
-                    foreach ($cartItems->getData() as $key => $item) {
-                ?>
-                   <tr>
+    <select name="customer" class="form-control">
+        <option>Select Customer</option>
+        <?php foreach ($customers->getData() as $key => $customer): ?>
+            <option value = "<?php echo $customer->customerId; ?>" <?php if($customer->customerId == $cart->customerId){echo "Selected" ;}?>><?php echo $customer->firstname; ?></option>
+        <?php endforeach; ?>
+    </select><br>
+    <button type="button" class="btn btn-info" onclick="selectCustomer(this);">Go</button><br><br>
 
-                       <td><?php echo $item->cartItemId; ?></td>
-                       <td><?php echo $item->productId; ?></td>
-                       <td><input type = "number" name="quantity[<?php echo $item->cartItemId ?>]" value = <?php echo $item->quantity ?> ></td>
-                       <td><?php echo $item->price; ?></td>
-                       <td><?php echo $item->price * $item->quantity; ?></td>
-                       <td><?php echo $item->discount * $item->quantity; ?></td>
-                       <td><?php echo ($item->quantity * $item->price - $item->discount * $item->quantity); ?></td>
-                       <td><a href='<?php echo $this->getUrl('delete', 'admin\cart', ['id' => $item->cartItemId]) ?>' class="btn btn-Danger" role="button">Delete</a></td>       
-                   </tr>
-               <?php } endif;?>
-               </tbody>
-           </table>
-        </form>
-       </div>
-   </div>
+    <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
+        <thead>
+            <th>Cart Item Id</th>
+            <th>Product Id</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Row Total</th>
+            <th>Discount</th>
+            <th>Final Total</th>
+            <th>Action</th>
+        </thead>
+        
+        <tbody align="center">
+        <?php if(!$cartItems): ?>
+            <tr>
+                <td colspan="8">No Data Found!!!</td>
+            </tr>
+        <?php else : ?> 
+        <?php
+            foreach ($cartItems->getData() as $key => $item) {
+        ?>
+            <tr>
+
+                <td><?php echo $item->cartItemId; ?></td>
+                <td><?php echo $item->productId; ?></td>
+                <td><input type = "number" name="quantity[<?php echo $item->cartItemId ?>]" value = <?php echo $item->quantity ?> ></td>
+                <td><?php echo $item->price; ?></td>
+                <td><?php echo $item->price * $item->quantity; ?></td>
+                <td><?php echo $item->discount * $item->quantity; ?></td>
+                <td><?php echo ($item->quantity * $item->price - $item->discount * $item->quantity); ?></td>
+                <td><a href='<?php echo $this->getUrl('delete', 'admin\cart', ['id' => $item->cartItemId]) ?>' class="btn btn-Danger" role="button">Delete</a></td>       
+            </tr>
+        <?php } endif;?>
+        </tbody>
+    </table>
+
+    <div class="row">
+    <div class="col-lg-6">
+    <table class="table table-bordered" id="billing">
+        <thead>
+            <tr>
+                <th colspan="2">Billing Address</th>
+            <tr>
+        <thead>
+        <tbody>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" name="billing[address]" value="<?php echo $cartBillingAddress->address; ?>" ></td>
+            <tr>
+            <tr>
+                <td>City</td>
+                <td><input type="text" name="billing[city]" value="<?php echo $cartBillingAddress->city; ?>" ></td>
+            <tr>
+            <tr>
+                <td>State</td>
+                <td><input type="text" name="billing[state]" value="<?php echo $cartBillingAddress->state; ?>"></td>
+            <tr>
+            <tr>
+                <td>Zipcode</td>
+                <td><input type="text" name="billing[zipcode]" value="<?php echo $cartBillingAddress->zipcode ;?>" ></td>
+            <tr>
+            <tr>
+                <td>Country</td>
+                <td><input type="text" name="billing[country]" value="<?php echo  $cartBillingAddress->country; ?>"></td>
+            <tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn btn-success" onclick="billingSave();"></td>
+                <td><input class="ml-auto" name="bookAddressBilling" value="1" type="checkbox">
+                    <label for="save">save to address book</label>
+                </td>
+            <tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="col-lg-6">
+    <table class="table table-bordered">
+        <thead>   
+            <tr>
+                <th colspan="2">Shipping Address</th>
+            <tr>
+        <thead>
+        <tbody>
+            <tr>
+                <td>Address</td>
+                <td><input type="text" name="shipping[address]" value="<?php echo $cartShippingAddress->address; ?>" ></td>
+            <tr>
+            <tr>
+                <td>City</td>
+                <td><input type="text" name="shipping[city]" value="<?php echo $cartShippingAddress->city; ?>"></td>
+            <tr>
+            <tr>
+                <td>State</td>
+                <td><input type="text" name="shipping[state]" value="<?php echo $cartShippingAddress->state; ?>"></td>
+            <tr>
+            <tr>
+                <td>Zipcode</td>
+                <td><input type="text" name="shipping[zipcode]" value="<?php echo $cartShippingAddress->zipcode; ?>" ></td>
+            <tr>
+            <tr>
+                <td>Country</td>
+                <td><input type="text" name="shipping[country]" value="<?php echo $cartShippingAddress->country; ?>"></td>
+            <tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn btn-success" onclick="shippingSave();"></td>
+                <td>
+                    <input class="ml-auto" name="bookAddressShipping" value="1" type="checkbox">
+                    <label for="save">save to address book</label>
+                </td>
+            <tr>
+            <tr>
+                <td>Same as Billing</td>
+                <td><input value="1" name="sameAsBilling" type="checkbox"></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-lg-6">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Payment Method</th>
+            <tr>
+        <thead>
+        <tbody>
+            <tr>
+                <td><label><input type="radio" name="creditcard"> CREDIT CARD</label><img src="Skin\admin\upload\image 3.jpg" width="70" height="70"></td>
+            <tr>
+            <tr>
+                <td><label><input type="radio" name="debitcard"> DEBIT CARD</label><img src="Skin\admin\upload\image 1.png" width="50" height="50"></td>
+            <tr>
+            <tr>
+                <td><label><input type="radio" name="paypal"> PAYPAL</label></label><img src="Skin\admin\upload\image 2.png" width="80" height="80"></td>
+            <tr>
+            <tr>
+                <td><label><input type="radio" name="cod"> COD</label></td>
+            <tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn btn-success"></td>
+            <tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="col-lg-6">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Shipping Method</th>
+            <tr>
+        <thead>
+        <tbody>
+            <tr>
+                <td><label><input type="radio" name="1day"> Express Delivery 1 Day</label></td>
+            <tr>
+            <tr>
+                <td><label><input type="radio" name="3day"> Platinum Delivery 3 Day</label></td>
+            <tr>
+            <tr>
+                <td><label><input type="radio" name="7day"> Free Delivery 7 Day</label></td>
+            <tr>
+            <tr>
+                <td><input type="submit" value="Save" class="btn btn-success"></td>
+            <tr>
+        </tbody>
+    </table>
+    </div>
+
+    </div>
+</form>
+</div>
+</div>
 
        <!-- <div class="footer">
            <p>I am Queen!!!!</p>
        </div>  -->
 </div>
+<script type="text/javascript">
+    function selectCustomer(){
+        var form = document.getElementById('cartForm');
+        form.setAttribute('Action','<?php echo $this->getUrl('selectCustomer') ?>');
+        form.submit();
+    }
+
+    function billingSave(){
+        var form = document.getElementById('cartForm');
+        form.setAttribute('Action', '<?php echo $this->getUrl('billingSave')?>');
+        form.submit();
+    }
+
+    function shippingSave(){
+        var form = document.getElementById('cartForm');
+        form.setAttribute('Action', '<?php echo $this->getUrl('shippingSave')?>');
+        form.submit();
+    }
+</script>
