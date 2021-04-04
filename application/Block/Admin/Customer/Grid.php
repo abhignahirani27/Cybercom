@@ -24,7 +24,7 @@ class Grid extends \Block\Core\Template{
     public function setCustomers($customers = null){
         if(!$customers){
             $customers = \Mage::getModel('Model\Customer');
-            $query = "SELECT c.`customerId`, c.`groupId`, c.`firstName`, c.`lastName`, c.`email`, c.`password`, c.`status`, c.`createdDate`, c.`updatedDate`,a.`address`, a.`city`, a.`state`, a.`zipCode`, a.`country`,a.`addressType`
+            $query = "SELECT c.`customerId`, c.`groupId`, c.`firstname`, c.`lastname`, c.`email`, c.`password`, c.`status`, c.`createdDate`, c.`updatedDate`,a.`address`, a.`city`, a.`state`, a.`zipCode`, a.`country`,a.`addressType`
                     FROM `customer` AS c 
                     LEFT JOIN `customer_address` a 
                     ON c.`customerId` = a.`customerId`";

@@ -5,6 +5,15 @@ namespace Block\Admin\Product;
 
 class Grid extends \Block\Core\Grid{
 
+    protected $filter = null;
+
+    public function getFilter()
+    {
+        if(!$this->filter){
+            $this->filter =  \Mage::getModel('Model\Admin\Filter');
+        }
+        return $this->filter;
+    }
     public function getTitle()
     {
         return  'Product Records';
@@ -13,7 +22,41 @@ class Grid extends \Block\Core\Grid{
     public function prepareCollection()
     {
         $product = \Mage::getModel('Model\Product');
-        $collection = $product->fetchAll();
+        $query = "SELECT * FROM `{$product->getTableName()}`";
+
+        if($this->getFilter()->hasFilters()){
+            
+            $query .= " WHERE ";
+            foreach ($this->getFilter()->getFilters() as $type => $filters) {
+                if($type == 'text'){
+                    foreach ($filters as $key => $value) {
+                        $query .= "(`{$key}` LIKE '%{$value}%') && " ;
+                    }
+                }
+                // if($type == 'varchar'){
+                //     foreach ($filters as $key => $value) {
+                //         $query .= "(`{$key}` LIKE '%{$value}%') && " ;
+                //     }
+                // }
+                // if($type == 'int'){
+                //     foreach ($filters as $key => $value) {
+                //         $query .= "(`{$key}` LIKE '%{$value}%') && " ;
+                //     }
+                // }
+                // if($type == 'decimal'){
+                //     foreach ($filters as $key => $value) {
+                //         $query .= "(`{$key}` LIKE '%{$value}%') && " ;
+                //     }
+                // }
+                if($type == 'number'){
+                    foreach ($filters as $key => $value) {
+                        $query .= "(`{$key}` LIKE '%{$value}%') && " ;
+                    }
+                }
+            }
+            $query = substr($query,0,-4);
+        }
+        $collection = $product->fetchAll($query);
         $this->setCollection($collection);
         return $this;
     }
@@ -29,7 +72,7 @@ class Grid extends \Block\Core\Grid{
         $this->addColumn('sku',[
             'field' => 'sku',
             'label' => 'SKU',
-            'type' => 'varchar'
+            'type' => 'text'
         ]);
 
         $this->addColumn('name',[
@@ -41,24 +84,24 @@ class Grid extends \Block\Core\Grid{
         $this->addColumn('price',[
             'field' => 'price',
             'label' => 'Price',
-            'type' => 'decimal'
+            'type' => 'number'
         ]);
 
         $this->addColumn('discount',[
             'field' => 'discount',
             'label' => 'Discount',
-            'type' => 'int'
+            'type' => 'number'
         ]);
 
         $this->addColumn('quantity',[
             'field' => 'quantity',
             'label' => 'Quantity',
-            'type' => 'int'
+            'type' => 'number'
         ]);
         $this->addColumn('status',[
             'field' => 'status',
             'label' => 'Status',
-            'type' => 'varchar'
+            'type' => 'text'
         ]);
 
         $this->addColumn('createdDate',[
@@ -104,11 +147,6 @@ class Grid extends \Block\Core\Grid{
             'ajax' => false
         ]);
 
-        $this->addButton('addfilter',[
-            'label' => 'Add Filter',
-            'method' => 'addFilterUrl',
-            'ajax' => false
-        ]);
     }
 
     public function getUpdateUrl($row)
@@ -124,11 +162,6 @@ class Grid extends \Block\Core\Grid{
     public function addNewUrl()
     {
         return $this->getUrl('productUpdate');
-    }
-
-    public function addFilterUrl()
-    {
-        return $this->getUrl('filter');
     }
 
     public function addToCartUrl($row)

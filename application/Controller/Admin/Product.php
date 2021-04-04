@@ -218,13 +218,13 @@ class Product extends \Controller\Core\Admin{
     {
         $filters = $this->getRequest()->getPost('filter');
         $filterModel = \Mage::getModel('Model\Admin\Filter');
-        $filterModel->setFilter($filters);
-        $filterValues = $filterModel->getFilterValue('name','quantity');
-        print_r($filterValues);
-        die();
+        $filterModel->setFilters($filters);
+        //$filterValues = $filterModel->getFilterValue('text','email');
+        $this->redirect('grid');
+        //print_r($filterValues);
+        //die();
     }
     
-
     
 }
 
