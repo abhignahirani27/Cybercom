@@ -98,5 +98,14 @@ class Grid extends \Block\Core\Template
     
     }
 
+    public function getPayment()
+    {
+        return \Mage::getModel("Model\Payment")->fetchAll();
+    }
+
+    public function getShipping()
+    {
+        return \Mage::getModel("Model\Shipping")->fetchAll();
+    }
 
 }
