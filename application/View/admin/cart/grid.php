@@ -3,6 +3,8 @@ $customers = $this->getCustomers();
 $cart = $this->getCart();
 $cartBillingAddress = $this->getCustomerBillingAddress();
 $cartShippingAddress = $this->getCustomerShippingAddress();
+$payment = $this->getPayment();
+$shipping = $this->getShipping();
 ?>
 
 <div class="container">
@@ -152,20 +154,17 @@ $cartShippingAddress = $this->getCustomerShippingAddress();
         <thead>
         <tbody>
             <tr>
-                <td><label><input type="radio" name="creditcard"> CREDIT CARD</label><img src="Skin\admin\upload\image 3.jpg" width="70" height="70"></td>
+                <td><?php foreach ($payment->getData() as $key => $value) { ?>
+                    <?php echo $value->name;?><input name= "paymentId" type="radio" value="<?php echo $value->paymentId; ?>"><br>
+                        <!-- Debit Card <input name= "payment" type="radio" value="debit cart"><br>
+                        PayPal <input name= "payment" type="radio" value="paypal"><br>
+                        COD <input name= "payment" type="radio" value="cod"> -->
+                    <?php }?>
+                </td>
+            </tr>
             <tr>
-            <tr>
-                <td><label><input type="radio" name="debitcard"> DEBIT CARD</label><img src="Skin\admin\upload\image 1.png" width="50" height="50"></td>
-            <tr>
-            <tr>
-                <td><label><input type="radio" name="paypal"> PAYPAL</label></label><img src="Skin\admin\upload\image 2.png" width="80" height="80"></td>
-            <tr>
-            <tr>
-                <td><label><input type="radio" name="cod"> COD</label></td>
-            <tr>
-            <tr>
-                <td><input type="submit" value="Save" class="btn btn-success"></td>
-            <tr>
+                <td><input type="submit" value="Save" onclick="savePayment();" class="btn btn-success font-weight-bold"></td>
+            </tr>
         </tbody>
     </table>
     </div>
@@ -178,17 +177,17 @@ $cartShippingAddress = $this->getCustomerShippingAddress();
         <thead>
         <tbody>
             <tr>
-                <td><label><input type="radio" name="1day"> Express Delivery 1 Day</label></td>
+                <td><?php foreach ($shipping->getData() as $key => $value) { ?>
+                    <?php echo $value->name;?><input name= "shippingId" type="radio" value="<?php echo $value->shippingId; ?>"><br>
+                        <!-- Debit Card <input name= "payment" type="radio" value="debit cart"><br>
+                        PayPal <input name= "payment" type="radio" value="paypal"><br>
+                        COD <input name= "payment" type="radio" value="cod"> -->
+                    <?php }?>
+                </td>
+            </tr>
             <tr>
-            <tr>
-                <td><label><input type="radio" name="3day"> Platinum Delivery 3 Day</label></td>
-            <tr>
-            <tr>
-                <td><label><input type="radio" name="7day"> Free Delivery 7 Day</label></td>
-            <tr>
-            <tr>
-                <td><input type="submit" value="Save" class="btn btn-success"></td>
-            <tr>
+                <td><input type="submit" value="Save" onclick="saveShipping();" class="btn btn-success font-weight-bold"></td>
+            </tr>
         </tbody>
     </table>
     </div>
@@ -219,5 +218,17 @@ $cartShippingAddress = $this->getCustomerShippingAddress();
         var form = document.getElementById('cartForm');
         form.setAttribute('Action', '<?php echo $this->getUrl('shippingSave')?>');
         form.submit();
+    }
+
+    function savePayment(){
+        var form = document.getElementById('cartForm');
+        form.setAttribute('Action', '<?php echo $this->getUrl('savePayment'); ?>');
+        form.submit();   
+    }
+
+    function saveShipping(){
+        var form = document.getElementById('cartForm');
+        form.setAttribute('Action', '<?php echo $this->getUrl('saveShipping'); ?>');
+        form.submit();   
     }
 </script>
