@@ -195,4 +195,24 @@ class Cart extends \Controller\Core\Admin
         $this->redirect('index','Admin\Cart',null,true);
     }
 
+    public function savePaymentAction()
+    {
+        $paymentId = $this->getRequest()->getPost('paymentId');
+        $cart = $this->getCart();
+        $payment = \Mage::getModel("Model\Payment")->load($paymentId);
+        $cart->paymentId = $payment->paymentId;
+        $cart->save();
+        $this->redirect('index','Admin\Cart',null,true);   
+    }
+
+    public function saveShippingAction()
+    {
+        $shippingId = $this->getRequest()->getPost('shippingId');
+        $cart = $this->getCart();
+        $shipping = \Mage::getModel("Model\Shipping")->load($shippingId);
+        $cart->shippingId = $shipping->shippingId;
+        $cart->save();
+        $this->redirect('index','Admin\Cart',null,true);   
+    }
+
 }
