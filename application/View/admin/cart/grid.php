@@ -23,7 +23,7 @@ $shipping = $this->getShipping();
             <option value = "<?php echo $customer->customerId; ?>" <?php if($customer->customerId == $cart->customerId){echo "Selected" ;}?>><?php echo $customer->firstname; ?></option>
         <?php endforeach; ?>
     </select><br>
-    <button type="button" class="btn btn-info" onclick="selectCustomer(this);">Go</button><br><br>
+    <button type="button" class="btn btn-info" onclick="selectCustomer();">Go</button><br><br>
 
     <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
         <thead>
@@ -155,7 +155,7 @@ $shipping = $this->getShipping();
         <tbody>
             <tr>
                 <td><?php foreach ($payment->getData() as $key => $value) { ?>
-                    <?php echo $value->name;?><input name= "paymentId" type="radio" value="<?php echo $value->paymentId; ?>"><br>
+                    <?php echo $value->name;?><input name= "paymentId" type="radio" value="<?php echo $value->paymentId; ?>" <?php if($value->paymentId == $cart->paymentId){echo "Checked" ;}?>><br>
                         <!-- Debit Card <input name= "payment" type="radio" value="debit cart"><br>
                         PayPal <input name= "payment" type="radio" value="paypal"><br>
                         COD <input name= "payment" type="radio" value="cod"> -->
@@ -178,7 +178,7 @@ $shipping = $this->getShipping();
         <tbody>
             <tr>
                 <td><?php foreach ($shipping->getData() as $key => $value) { ?>
-                    <?php echo $value->name;?><input name= "shippingId" type="radio" value="<?php echo $value->shippingId; ?>"><br>
+                    <?php echo $value->name;?><input name= "shippingId" type="radio" value="<?php echo $value->shippingId; ?>" <?php if($value->shippingId == $cart->shippingId){echo "Checked" ;}?>><br>
                         <!-- Debit Card <input name= "payment" type="radio" value="debit cart"><br>
                         PayPal <input name= "payment" type="radio" value="paypal"><br>
                         COD <input name= "payment" type="radio" value="cod"> -->
@@ -191,16 +191,20 @@ $shipping = $this->getShipping();
         </tbody>
     </table>
     </div>
-
-    </div>
+        <table class="table table-bordered">
+                <tr>
+                    <td>Base Total : <?php echo $this->getBaseTotal(); ?><br>
+                        Shipping Charges : <?php echo $cart->shippingAmount; ?><br> 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">GRAND TOTAL : <?php echo ($this->getBaseTotal()+$cart->shippingAmount); ?></td>
+                </tr>
+        </table>   
 </form>
 </div>
 </div>
 
-       <!-- <div class="footer">
-           <p>I am Queen!!!!</p>
-       </div>  -->
-</div>
 <script type="text/javascript">
     function selectCustomer(){
         var form = document.getElementById('cartForm');
@@ -232,3 +236,11 @@ $shipping = $this->getShipping();
         form.submit();   
     }
 </script>
+
+
+
+
+
+
+
+
