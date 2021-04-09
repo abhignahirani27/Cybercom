@@ -1,5 +1,6 @@
 <?php $attributes = $this->getAttributes();  ?>
-<?php $product = $this->getTableRow(); ?>
+<?php $product = $this->getTableRow();
+$attributes = $this->getAttributes(); ?>
 <div id="title">
     <h2>
         Product Attribute

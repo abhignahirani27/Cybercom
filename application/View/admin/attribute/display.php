@@ -2,25 +2,25 @@
     $attribute = $this->getAttribute();
     $product = $this->getProduct(); 
     $options = $this->getOptions();
-    // echo "<pre>";
-    // print_r($attribute);  
-    // print_r($product);  
-    // print_r($options); 
+     //echo "<pre>";
+     //print_r($attribute);  
+    //print_r($product);  
+     //print_r($options); 
 ?>
 
-<?php if (!$options && $attribute->inputType != 'text'): ?>
+<?php  if (!$options && $attribute->inputType != 'text'): ?>
     <label for="<?php echo $attribute->name; ?>"> <?php echo $attribute->name; ?>: </label>
     No Options Found!
 <?php else: ?>
     <?php switch ($attribute->inputType): 
         case 'select': ?>
             <div class="row form-group">
-                <div class="col-4">
+                <div class="col-6">
                     <label for="<?php echo $attribute->name; ?>"> <?php echo $attribute->name; $attriName = $attribute->code;?>: </label>
                     <select name="product[<?php echo $attribute->name; ?>]" class="form-control">
                     
                     <?php foreach ($options->getData() as $option): ?>
-                        <option value="<?php echo $option->optionId; ?>" <?php if($option->optionId == $product->$attriName){ echo "selected"; } ?> ><?php echo $option->name; ?></option>  
+                        <option value="<?php echo $option->optionId; ?>" <?php  if($option->optionId == $product->$attriName){ echo "selected"; } ?> ><?php echo $option->name; ?></option>  
                     <?php endforeach; ?>
 
                     </select>
@@ -30,7 +30,7 @@
 
         <?php case 'checkbox': ?>
             <div class="row form-group">
-                <div class="col-4">
+                <div class="col-6">
                     <label for="<?php echo $attribute->name; ?>"> <?php echo $attribute->name; $attriName = $attribute->code;?>: </label><br>
                     
                     <?php foreach ($options->getData() as $option): ?>
@@ -45,7 +45,7 @@
 
         <?php case 'radio': ?>
             <div class="row form-group">
-                <div class="col-4">
+                <div class="col-6">
                     <label for="<?php echo $attribute->name; ?>"> <?php echo $attribute->name; $attriName = $attribute->code;?>: </label><hr>
                     
                     <?php foreach ($options->getData() as $option): ?>
@@ -59,7 +59,7 @@
 
         <?php case 'text': ?>
             <div class="row form-group">
-                <div class="col-4">
+                <div class="col-6">
                     <label for="<?php echo $attribute->name; ?>"> <?php echo $attribute->name; $attriName = $attribute->code;?>: </label>
                     <input type="text" name="product[<?php echo $attribute->name; ?>]" class="form-control" id="<?php echo $attribute->name; ?>" value="<?php echo $product->$attriName; ?>">
                 </div>
@@ -68,7 +68,7 @@
 
         <?php case 'textarea': ?>
             <div class="row form-group">
-                <div class="col-4">
+                <div class="col-6">
                     <label for="<?php echo $attribute->name; ?>"> <?php echo $attribute->name; ?>: </label>
                     <textarea name="product[<?php echo $attribute->name; ?>]" rows="4" class="form-control" id="<?php echo $attribute->name; ?>"></textarea>
                 </div>
@@ -79,5 +79,5 @@
             Not handel this type.
             <?php break; ?>
     <?php endswitch; ?>
-<?php endif; ?>
+<?php endif;?>
 

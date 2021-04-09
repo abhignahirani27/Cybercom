@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td>Back End Type:</td>
-            <td><select name="attribute[inputType]">
+            <td><select name="attribute[backEndType]">
                     <?php foreach ($attribute->getBackendTypeOption() as $key => $value) : ?>
                         <option value="<?php echo $key ?>"><?php echo $value ?></option>
                     <?php endforeach; ?>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td>Input Type:</td>
-            <td><select name="attribute[backEndType]">
+            <td><select name="attribute[inputType]">
                     <?php foreach ($attribute->getInputTypeOption() as $key => $value) : ?>
                         <option value="<?php echo $key ?>"><?php echo $value ?></option>
                     <?php endforeach; ?>
