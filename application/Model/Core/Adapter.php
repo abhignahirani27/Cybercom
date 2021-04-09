@@ -1,7 +1,7 @@
 <?php
 namespace Model\Core;
 class Adapter {
-    private $config = [
+    private $config_group = [
         'host' => 'localhost',
         'username' => 'root',
         'password' => '',
@@ -12,7 +12,7 @@ class Adapter {
 
     public function connection()
     {
-        $connect = new \mysqli($this->config['host'], $this->config['username'], $this->config['password'], $this->config['database']);
+        $connect = new \mysqli($this->config_group['host'], $this->config_group['username'], $this->config_group['password'], $this->config_group['database']);
         $this->setConnect($connect);
         return $this;
     }

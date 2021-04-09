@@ -211,6 +211,7 @@ class Cart extends \Controller\Core\Admin
         $cart = $this->getCart();
         $shipping = \Mage::getModel("Model\Shipping")->load($shippingId);
         $cart->shippingId = $shipping->shippingId;
+        $cart->shippingAmount = $shipping->amount;
         $cart->save();
         $this->redirect('index','Admin\Cart',null,true);   
     }

@@ -113,7 +113,7 @@ class Cart extends \Model\Core\Table
         if (!$this->cartId) {
             return false;
         }
-        $query = "SELECT * FROM `cart` WHERE `shippingId` = '{$this->shippingId}'";
+        $query = "SELECT * FROM `shipping` WHERE `shippingId` = '{$this->shippingId}'";
         $shipping = \Mage::getModel('Model\Shipping')->fetchRow($query);
         $this->setShipping($shipping);
         return $this->shipping; 
@@ -130,7 +130,7 @@ class Cart extends \Model\Core\Table
         if (!$this->cartId) {
             return false;
         }
-        $query = "SELECT * FROM `cart` WHERE `paymentId` = '{$this->paymentId}'";
+        $query = "SELECT * FROM `payment` WHERE `paymentId` = '{$this->paymentId}'";
         $payment = \Mage::getModel('Model\Payment')->fetchRow($query);
         $this->setPayment($payment);
         return $this->payment; 

@@ -8,18 +8,19 @@ class Attribute extends Core\Table
 
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
-    const BACKEND_TYPE_VARCHAR = 'varchar';
-    const BACKEND_TYPE_INT =  'int';
-    const BACKEND_TYPE_DECIMAL = 'decimal';
-    const BACKEND_TYPE_TEXT = 'text';
-    const INPUT_TYPE_TEXT = 'textbox';
-    const INPUT_TYPE_TEXTAREA = 'textarea';
-    const INPUT_TYPE_SELECT = 'select';
-    const INPUT_TYPE_CHECKBOX = 'checkbox';
-    const INPUT_TYPE_RADIO = 'radio';
-    const ENTITY_TYPE_CUSTOMER = 'customer';
-    const ENTITY_TYPE_CATEGORY = 'category';
-    const ENTITY_TYPE_PRODUCT = 'product';
+
+    // const BACKEND_TYPE_VARCHAR = 'varchar';
+    // const BACKEND_TYPE_INT =  'int';
+    // const BACKEND_TYPE_DECIMAL = 'decimal';
+    // const BACKEND_TYPE_TEXT = 'text';
+    // const INPUT_TYPE_TEXT = 'textbox';
+    // const INPUT_TYPE_TEXTAREA = 'textarea';
+    // const INPUT_TYPE_SELECT = 'select';
+    // const INPUT_TYPE_CHECKBOX = 'checkbox';
+    // const INPUT_TYPE_RADIO = 'radio';
+    // const ENTITY_TYPE_CUSTOMER = 'customer';
+    // const ENTITY_TYPE_CATEGORY = 'category';
+    // const ENTITY_TYPE_PRODUCT = 'product';
 
     public function __construct()
     {
@@ -38,30 +39,40 @@ class Attribute extends Core\Table
     public function getBackendTypeOption()
     {
         return [
-            self::BACKEND_TYPE_VARCHAR => 'Varchar',
-            self::BACKEND_TYPE_INT => 'Int',
-            self::BACKEND_TYPE_DECIMAL => 'Decimal',
-            self::BACKEND_TYPE_TEXT => 'Text'
+            // self::BACKEND_TYPE_VARCHAR => 'Varchar',
+            // self::BACKEND_TYPE_INT => 'Int',
+            // self::BACKEND_TYPE_DECIMAL => 'Decimal',
+            // self::BACKEND_TYPE_TEXT => 'Text'
+            'varchar'=>'Varchar',
+            'int'=>'Int',
+            'decimal'=>'Decimal',
+            'text'=>'Text'
         ];
     }
 
     public function getInputTypeOption()
     {
         return [
-            self::INPUT_TYPE_TEXT => 'Text Box',
-            self::INPUT_TYPE_TEXTAREA => 'Text Area',
-            self::INPUT_TYPE_SELECT => 'Select',
-            self::INPUT_TYPE_CHECKBOX => 'Checkbox',
-            self::INPUT_TYPE_RADIO => 'Radio'
+            // self::INPUT_TYPE_TEXT => 'Text Box',
+            // self::INPUT_TYPE_TEXTAREA => 'Text Area',
+            // self::INPUT_TYPE_SELECT => 'Select',
+            // self::INPUT_TYPE_CHECKBOX => 'Checkbox',
+            // self::INPUT_TYPE_RADIO => 'Radio'
+            'text'=>'Text Box',
+            'textarea'=>'Text Area',
+            'select'=>'Select',
+            'checkbox'=>'Checkbox',
+            'radio'=>'Radio'
         ];
     }
 
     public function getEntityTypeOptions()
     {
         return [
-            self::ENTITY_TYPE_PRODUCT => 'Product',
-            self::ENTITY_TYPE_CATEGORY => 'Category',
-            self::ENTITY_TYPE_CUSTOMER => 'Customer'
+            // self::ENTITY_TYPE_PRODUCT => 'Product',
+            // self::ENTITY_TYPE_CATEGORY => 'Category',
+            'product'=>'Product',
+            'category'=>'Category',
         ];
     }
 

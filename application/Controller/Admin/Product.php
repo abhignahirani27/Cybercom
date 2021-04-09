@@ -125,7 +125,7 @@ class Product extends \Controller\Core\Admin{
     {
         $media = \Mage::getModel("Model\Product");
         $media->setTableName('product_media');
-        $Pid = $media->getPrimaryKey();
+        //$Pid = $media->getPrimaryKey();
         $id = $this->getRequest()->getGet('id');
         if($this->getRequest()->getPost('image')){
             $name = $_FILES['imagefile']['name'];
@@ -137,7 +137,7 @@ class Product extends \Controller\Core\Admin{
             if(move_uploaded_file($tmp_name,$location.$name)){
                 $media->image = $location.$name;
                 $media->label = $name;
-                $media->$Pid = $id;
+                $media->productId = $id;
                 $data = $media->getData();
                 $query = "INSERT INTO `{$media->getTableName()}` (".implode(",", array_keys($data)) . ") VALUES ('" . implode("','", array_values($data)) . "')"; 
                 $media->save($query);
@@ -147,14 +147,15 @@ class Product extends \Controller\Core\Admin{
         
         if($this->getRequest()->getPost('remove')){
             $ids = $this->getRequest()->getPost('delete');
-            if($ids){
-                $media->setPrimaryKey('mediaId');
-                
+
+            if($ids){ 
+                $media->setPrimaryKey('mediaId');              
                 foreach ($ids as $key => $value) {
                     $media->load($key);
                     $id = $media->mediaId;
-                    $query = "Delete FROM `product_media` WHERE `mediaId` = $id"; 
+                    
                     if (unlink($media->image)) {
+                        $query = "Delete FROM `product_media` WHERE `mediaId` = $id";
                         $media->delete($query);
                     }
                 }
@@ -187,7 +188,7 @@ class Product extends \Controller\Core\Admin{
                 $query .= " WHERE `mediaId` = {$key}";
                 $media->save($query);
             }
-            $this->redirect('grid','product');
+            $this->redirect('grid','Admin\Product');
         }
     }
     

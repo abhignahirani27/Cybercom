@@ -122,45 +122,44 @@
             //return $rowArray;
         }
         public function save($query = null){             
-            if(array_key_exists($this->getPrimaryKey(),$this->data)){     
-                unset($this->data[$this->getPrimaryKey()]);
-            }    
-            if(!$this->data){
-                return false;
-            }
-            $id = $this->{$this->getPrimaryKey()}; 
+            //$id = $this->{$this->getPrimaryKey()}; 
             if(!$query){
-                if(!$id){  
+                if(array_key_exists($this->getPrimaryKey(),$this->data)){     
+                    unset($this->data[$this->getPrimaryKey()]);
+                }    
+                if(!$this->data){
+                    return false;
+                }
+                if(!array_key_exists($this->getPrimaryKey(),$this->getOriginalData())){  
                     $keys = "`" . implode("`,`",array_keys($this->data)) . "`";
                     $values = "'" . implode("','",$this->data) . "'";
                     $query = "INSERT INTO `". $this->getTableName() ."` (". $keys . ") VALUES (". $values . ")";
                     return $this->getAdapter()->insert($query);  
                 }
-                else{
-                    $args = [];
-                    foreach ($this->getData() as $key => $value) {
-                        $args[] = "`$key` = '$value'";
-                    }
-                    // $id = $this->getData()[$this->getPrimaryKey()];
-                    // array_shift($args);
-                    $query = "UPDATE `{$this->getTableName()}`  SET ".implode(",",$args) . " WHERE  `{$this->getPrimaryKey()}` = '{$id}'";
-                    return $this->getAdapter()->update($query);
+                $args = [];
+                foreach ($this->getData() as $key => $value) {
+                    $args[] = "`$key` = '$value'";
                 }
-                return $this->load($id);
+                $id = $this->originalData[$this->getPrimaryKey()];
+                // array_shift($args);
+                $query = "UPDATE `{$this->getTableName()}`  SET ".implode(",",$args) . " WHERE  `{$this->getPrimaryKey()}` = '{$id}'";
+                //return $this->getAdapter()->update($query);
+                //return $this->load($id);
             }
+            return $this->getAdapter()->update($query);
         }
 
         public function addressSave1(){   
             $data = $this->getData();
-            if(array_key_exists($this->getPrimaryKey(), $data)){
+            if(array_key_exists($this->getPrimaryKey(), $data)){             
                 $query = "UPDATE `{$this->getTableName()}` SET ";            
                 foreach ($data as $key => $value) {
-                    if($key == $this->getPrimaryKey()){
+                    if($key == $this->getPrimaryKey()){                                  
                         continue;
-                    }
-                    $query.= $key.'='."'$value'" .',';
+                    } 
+                    $query.= $key.'='."'$value'" .',';   
                 }
-                $query = substr($query, 0, -1);
+                $query = substr($query, 0, -1); 
                 $query .= " WHERE `{$this->getPrimaryKey()}` = '{$data[$this->getPrimaryKey()]}'";    
                 $query .= "&& `addressType` = '{$data['addressType']}'";
             }
@@ -177,7 +176,7 @@
     
         public function delete($query = null){
             if(!$query){
-                $id = $_GET['id'];
+                $id = $_GET['id'];                 
                 $query="Delete FROM `{$this->getTableName()}` WHERE  `{$this->getPrimaryKey()}` = '{$id}'";
             }
             return $this->getAdapter()->delete($query);  
