@@ -19,10 +19,9 @@ class Media extends \Block\Core\Edit
         if($id = $this->getRequest()->getGet('id')){
             $query = "SELECT * FROM `product_media` WHERE `productId`={$id}";
             $array = $product->fetchAll($query);
-            if($array){
-                foreach($array->getData() as $key=>$value){
-                    $this->media[] = $value->getData();
-                }
+            if($array)
+            {
+                $this->media=$array->getData();
             }
         }
         return $this;

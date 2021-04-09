@@ -108,4 +108,19 @@ class Grid extends \Block\Core\Template
         return \Mage::getModel("Model\Shipping")->fetchAll();
     }
 
+    public function getBaseTotal()
+    {
+        $cartItems = $this->getCart()->getItems();
+        $baseTotal = 0;
+        if ($cartItems) {
+            foreach ($cartItems->getData() as $item) {
+                $baseTotal += (($item->quantity * $item->price) - ($item->quantity * $item->discount));
+            }
+        }
+        $cart = $this->getCart();
+        $cart->total = $baseTotal;
+        $cart->save();
+        return $cart->total;
+    }
+
 }

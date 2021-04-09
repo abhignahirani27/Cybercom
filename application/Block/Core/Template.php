@@ -39,7 +39,7 @@ class Template{
     }
     public function toHtml()
     {
-        require_once $this->getTemplate();
+        require $this->getTemplate();
     }
     public function setUrls($url = null) {
 		if(!$url) {
