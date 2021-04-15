@@ -28,7 +28,7 @@ class Grid extends \Block\Core\Template{
                     FROM `customer` AS c 
                     LEFT JOIN `customer_address` a 
                     ON c.`customerId` = a.`customerId`";
-            $customers =  $customers->fetchAll($query)->getData();
+            $customers =  $customers->fetchAll($query);
         }
         $this->customers =$customers;
         return $this;

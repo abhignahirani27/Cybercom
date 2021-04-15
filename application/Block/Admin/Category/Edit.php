@@ -5,7 +5,7 @@ namespace Block\Admin\Category;
 
 class Edit extends \Block\Core\Edit
 {
-    //protected $category = NULL;
+    protected $category = NULL;
     protected $categories = NULL;
     
     public function __construct()
@@ -30,6 +30,13 @@ class Edit extends \Block\Core\Edit
     //     $blockClassName = $tabs[$tab]['block'];
     //     $block = \Mage::getBlock($blockClassName);
     //     $block->toHtml();
+    // }
+
+    // public function getTableRow(){
+    //     if (!$this->category){
+    //         $this->setCategory();
+    //     }
+    //     return $this->category;
     // }
 
     // public function setCategory($category = NULL){

@@ -39,7 +39,11 @@ class Template{
     }
     public function toHtml()
     {
-        require $this->getTemplate();
+        ob_start();
+        require_once $this->getTemplate();
+        $content = ob_get_contents();
+        ob_end_clean();
+        return $content;
     }
     public function setUrls($url = null) {
 		if(!$url) {
