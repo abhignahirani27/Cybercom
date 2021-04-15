@@ -4,8 +4,8 @@
    <br><br><br>
    <div id="main-content">
        <h2 style="text-align: center;">Records</h2>
-       <a href="<?php echo $this-> getUrl('adminUpdate') ?>" class="btn btn-info" role="button">Add Records</a>
-       <a href="<?php echo $this-> getUrl('grid') ?>" class="btn btn-info" role="button">Apply Filter</a><br><br>
+       <a onclick="object.setUrl('<?php echo $this-> getUrl('adminUpdate',null,null,true) ?>').load()" class="btn btn-info" role="button">Add Records</a>
+       <a onclick="object.setUrl('<?php echo $this-> getUrl('grid') ?>').load()" class="btn btn-info" role="button">Apply Filter</a><br><br>
 
        <div class="table_data">
            <table  border="3px" cellpadding="10px" align="center" width="100%" class="table table-striped" style="border-collapse:collapse">
@@ -46,8 +46,8 @@
                        <td><?php echo $value->status; ?></td>
                        <td><?php echo $value->createdDate; ?></td>
                        <td><?php echo $value->updatedDate; ?></td>
-                       <td><a href='<?php echo $this->getUrl('adminUpdate', null, ['id' => $value->adminId]) ?>' class="btn btn-Success" role="button">Update</a></td>      
-                        <td><a href='<?php echo $this->getUrl('adminDelete', null, ['id' => $value->adminId]) ?>' class="btn btn-danger" role="button">Delete</a></td>
+                       <td><a onclick="object.setUrl('<?php echo $this->getUrl('adminUpdate', null, ['id' => $value->adminId]) ?>').load()" class="btn btn-Success" role="button">Update</a></td>      
+                        <td><a onclick="object.setUrl('<?php echo $this->getUrl('adminDelete', null, ['id' => $value->adminId]) ?>').load()" class="btn btn-danger" role="button">Delete</a></td>
                    </tr>
                <?php } endif; ?>
                </tbody>

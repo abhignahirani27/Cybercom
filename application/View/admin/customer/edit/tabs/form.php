@@ -38,6 +38,6 @@ $option = $customer->getStatusOption();
                 <?php } ?>
                 </select><br><br>
 
-                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                <button type="button" class="btn btn-primary" value="submit" onclick="object.setForm(this).load()">Submit</button>
         </div>
 </form>

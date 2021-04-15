@@ -5,7 +5,7 @@ $categoryOptions =$this->getCategoryOptions();
 ?>
             <h2 style="text-align:center ;">Category Add/Update Form</h2>
 
-            <form method="post" action="<?php echo $this->getUrl('save',NULL,['id'=>$category->categoryId],true);?>">
+            <form method="post" action="<?php echo $this->getUrl('save');?>">
 
                 <select  name="category[parentId]">
                     <?php if($categoryOptions):?>
@@ -29,6 +29,6 @@ $categoryOptions =$this->getCategoryOptions();
                 <textarea class="form-control" id="description" name="category[description]" rows="3"
                 value="<?php echo $category->description; ?>"><?php echo $category->description; ?></textarea><br><br>
                 
-                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                <button type="button" class="btn btn-primary" value="submit" onclick="object.setForm(this).load()">Submit</button>
 
             </form>

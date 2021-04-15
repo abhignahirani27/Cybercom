@@ -5,7 +5,7 @@
    <br><br><br>
    <div id="main-content">
        <h2 style="text-align: center;">Records</h2>
-       <a href="<?php echo $this-> getUrl('paymentUpdate') ?>" class="btn btn-info" role="button">Add Records</a><br><br>
+       <a onclick="object.setUrl('<?php echo $this->getUrl('paymentUpdate',null,null,true); ?>').load()" class="btn btn-info">Add Records</a><br><br>
 
        <div class="table_data">
            <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
@@ -38,8 +38,8 @@
                        <td><?php echo $value->status; ?></td>
                        <td><?php echo $value->createdDate; ?></td>
                        <td><?php echo $value->updatedDate; ?></td>
-                       <td><a href='<?php echo $this->getUrl('paymentUpdate', null, ['id' => $value->paymentId]) ?>' class="btn btn-Success" role="button">Update</a></td>       
-                        <td><a href='<?php echo $this->getUrl('paymentDelete', null, ['id' => $value->paymentId]) ?>' class="btn btn-danger" role="button">Delete</a></td>
+                       <td><a role="button" onclick="object.setUrl('<?php echo $this->getUrl('paymentUpdate', null, ['id' => $value->paymentId]);?>').load()" class="btn btn-Success">Update</a></td>       
+                        <td><a role="button" onclick="object.setUrl('<?php echo $this->getUrl('paymentDelete', null, ['id' => $value->paymentId]) ?>').load()" class="btn btn-danger">Delete</a></td>
                    </tr>
                <?php } endif;?>
                </tbody>

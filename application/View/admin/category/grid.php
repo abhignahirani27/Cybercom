@@ -8,7 +8,7 @@
    <div id="main-content">
        <h2 style="text-align: center;">Records</h2>
 
-       <a href="<?php echo $this-> getUrl('categoryUpdate') ?>" class="btn btn-info" role="button">Add Records</a><br><br>
+       <a onclick="object.setUrl('<?php echo $this-> getUrl('categoryUpdate',null,null,true); ?>').load()" class="btn btn-info" role="button">Add Records</a><br><br>
        <div class="table_data">
            <table  border="3px" cellpadding="10px" align="center" width="70%" style="border-collapse:collapse">
                <thead>
@@ -38,8 +38,8 @@
                        <td><?php echo $value->description; ?></td>
                        <td><?php echo $value->pathId; ?></td>
 
-                       <td><a href='<?php echo $this->getUrl('categoryUpdate', null, ['id' => $value->categoryId]) ?>' class="btn btn-Success">Update</a></td>      
-                        <td><a href='<?php echo $this->getUrl('categoryDelete', null, ['id' => $value->categoryId]) ?>' class="btn btn-Danger">Delete</a></td>
+                       <td><a onclick="object.setUrl('<?php echo $this->getUrl('categoryUpdate', null, ['id' => $value->categoryId]); ?>').load()" class="btn btn-Success">Update</a></td>      
+                        <td><a onclick="object.setUrl('<?php echo $this->getUrl('categoryDelete', null, ['id' => $value->categoryId]); ?>').load()" class="btn btn-Danger">Delete</a></td>
                    </tr>
                <?php } endif; ?>
                </tbody>

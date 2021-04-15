@@ -1,4 +1,4 @@
-<?php //require_once "header.php";
+<?php
 $admin = $this->getTableRow();
 $option = $admin->getStatusOption();
 ?>
@@ -28,15 +28,12 @@ $option = $admin->getStatusOption();
                     <option value="<?php echo $key; ?>" <?php if($admin->status == $key){echo "selected";} ?> ><?php echo $value; ?></option>
                 <?php } ?>
                 </select><br><br>
-                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                <button type="button" class="btn btn-primary" value="submit" onclick="object.setForm(this).load()">Submit</button>
 
 
             </div>
         </div>
 
         </form>
-        <div class="footer">
-            <p>I am Queen!!!!</p>
-        </div> 
 
 </div>

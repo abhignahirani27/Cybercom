@@ -4,15 +4,16 @@ $billing = [];
 $shipping = [];
 if($address){
     foreach($address as $key=>$value){
-        if($value['addressType'] == 'Billing'){
+        if($value['addressType'] == 'billing'){
             $billing = $value;
-        }else if($value['addressType'] == 'Shipping'){
+        }else if($value['addressType'] == 'shipping'){
             $shipping = $value;
         }
     }
 }
 ?>
 <h3 style="text-align:center">Address Form</h3>
+<div class="container border mt-3" style="padding:0px 90px; width:100%">
 <form action="<?php echo $this->getUrl('addressSave',NULL,['id'=>$this->getRequest()->getGet('id')],true); ?>" method="POST">
 
 <div class="row">
@@ -90,8 +91,9 @@ if($address){
                 echo $shipping['country'];
             };
         ?>"><br><br>    
-    <input type="submit" value="Save" class="btn btn-primary">
+    <input type="button" value="Save" class="btn btn-primary" onclick="object.setForm(this).load()">
     <input type="reset" value="Reset" class="btn btn-primary">
 </div>
 </div>
 </form>
+</div>

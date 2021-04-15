@@ -36,7 +36,7 @@
         <tr>
             <td height="100px" colspan="3">
                 <?php 
-                    $this->getChild('header')->toHtml();
+                    echo $this->getChild('header')->toHtml();
                 ?>
             </td>
         </tr>
@@ -44,8 +44,8 @@
             <td height="500px" width="150px"><?php $this->getChild('left')->toHtml(); ?></td>
             <td>
                 <?php
-                    $this->createBlock('Block\Core\Layout\Message')->toHtml(); 
-                    $this->getChild('content')->toHtml();
+                    echo $this->createBlock('Block\Core\Layout\Message')->toHtml(); 
+                    echo $this->getChild('content')->toHtml();
                 ?>
             </td>
             <td width="150px"><?php $this->getChild('right')->toHtml(); ?></td>
@@ -54,7 +54,7 @@
         <tr>
             <td height="100px"colspan="3">
                 <?php 
-                    $this->getChild('footer')->toHtml();
+                    echo $this->getChild('footer')->toHtml();
                 ?>
             </td>
         </tr>

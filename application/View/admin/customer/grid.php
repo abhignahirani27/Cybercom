@@ -1,91 +1,9 @@
-<?php
+<?php 
 $customers = $this->getCustomers();
-//require_once 'header.php';
-?>
-
-<div class="container">
-   <br><br>
-   <div id="main-content">
-       <h2 style="text-align: center;">Records</h2>
-       
-       <a href="<?php echo $this->getUrl('customerUpdate'); ?>" class="btn btn-info" role="button">Add Records</a><br><br>
-       <div class="table_data">
-           <table  border="3px" align="center" width="50%" class="table table-striped" style="border-collapse:collapse">
-               <thead>
-                    <th>Id</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>GroupId</th>
-                    <th>Password</th>
-                    <th>Status</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Zipcode</th>
-                    <th>Country</th>
-                    <th>AddressType</th>
-                    <th>CreatedDate</th>
-                    <th>UpdatedDate</th>
-                    <th colspan="2">Action</th>
-                </thead>
-                <tbody align="center">
-
-                    <?php
-                            $row = $this->getCustomers();
-                            foreach ($row as $value) {
-                    ?>
-
-                   <tr>
-
-                        <td><?php echo $value->customerId; ?></td>
-                        <td><?php echo $value->firstname; ?></td>
-                        <td><?php echo $value->lastname; ?></td>
-                        <td><?php echo $value->email; ?></td>
-                        <td><?php echo $value->groupId; ?></td>
-                        <td><?php echo $value->password; ?></td>
-                        <td><?php echo $value->status; ?></td>
-                        <td><?php echo $value->address; ?></td>
-                        <td><?php echo $value->city; ?></td>
-                        <td><?php echo $value->state; ?></td>
-                        <td><?php echo $value->zipCode; ?></td>
-                        <td><?php echo $value->country; ?></td>
-                        <td><?php echo $value->addressType; ?></td>
-                        <td><?php echo $value->createdDate; ?></td>
-                        <td><?php echo $value->updatedDate; ?></td>
-                       <td><a href='<?php echo $this->getUrl('customerUpdate', null, ['id' => $value->customerId]) ?>' class="btn btn-Success">Update</a></td>       
-                        <td><a href='<?php echo $this->getUrl('customerDelete', null, ['id' => $value->customerId]) ?>' class="btn btn-Danger">Delete</a></td>
-                   </tr>
-               <?php } ?>
-               </tbody>
-           </table>
-       </div>
-
-   </div>
-        <!-- <div class="footer">
-            <p>I am Queen!!!!</p>
-        </div> -->
-</div>
-</body>
-</html>
-
-
-
-
-
-<?php /*
-$customers = $this->getCustomers();
-$data = [];
-if($customers){
-    foreach($customers as $key=>$value){
-        $data = $value->getData();
-        break;
-    }   
-}
 ?>
 
 <h2 style="text-align: center;">Records</h2>
-<a href="<?php echo $this-> getUrl('customerUpdate') ?>" class="btn btn-info" role="button">Add Records</a><br><br>
+<a onclick="object.setUrl('<?php echo $this-> getUrl('customerUpdate',null,null,true); ?>').load()" class="btn btn-info" role="button">Add Records</a><br><br>
 <table border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
     <?php if(!$customers): ?>
     <tr>
@@ -93,26 +11,49 @@ if($customers){
     </tr>
     <?php else: ?>
     <tr>
-        <?php foreach($data as $key=>$value){ ?>
-            <th><?php echo $key?></th>
-        <?php } ?>
-        <th colspan='2'>Action</th>
+        <th>Id</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>GroupId</th>
+        <th>Password</th>
+        <th>Status</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zipcode</th>
+        <th>Country</th>
+        <th>AddressType</th>
+        <th>CreatedDate</th>
+        <th>UpdatedDate</th>
+        <th colspan="2">Action</th>
     </tr>
-    <?php foreach ($customers as $key => $value) { ?>
-        <?php if($value->addressType == 'Shipping'){continue;} ?>
+    <?php foreach ($customers->getData() as $key => $value) { ?>
+        <?php if($value->addressType == 'shipping'){continue;} ?>
     <tr>
-        <?php foreach($data as $key1=>$value1){ ?>
-        <td><?php echo $value->$key1; ?></td>
-        <?php } ?>
+        <td><?php echo $value->customerId; ?></td>
+        <td><?php echo $value->firstname; ?></td>
+        <td><?php echo $value->lastname; ?></td>
+        <td><?php echo $value->email; ?></td>
+        <td><?php echo $value->groupId; ?></td>
+        <td><?php echo $value->password; ?></td>
+        <td><?php echo $value->status; ?></td>
+        <td><?php echo $value->address; ?></td>
+        <td><?php echo $value->city; ?></td>
+        <td><?php echo $value->state; ?></td>
+        <td><?php echo $value->zipCode; ?></td>
+        <td><?php echo $value->country; ?></td>
+        <td><?php echo $value->addressType; ?></td>
+        <td><?php echo $value->createdDate; ?></td>
+        <td><?php echo $value->updatedDate; ?></td>
         <td colspan=2>
-            <a href = "<?php echo $this->getUrl('customerUpdate',NULL,['id'=>$value->customerId,'firstName'=>$value->firstName,'lastName'=>$value->lastName,'email'=>$value->email,'password'=>$value->password,'status'=>$value->status]); ?>" class="btn btn-Success">
+            <a onclick = "object.setUrl('<?php echo $this->getUrl('customerUpdate',NULL,['id'=>$value->customerId,'firstName'=>$value->firstName,'lastName'=>$value->lastName,'email'=>$value->email,'password'=>$value->password,'status'=>$value->status]); ?>').load()" class="btn btn-Success">
                 Update
             </a>
-            <a href = "<?php  echo $this->getUrl('customerDelete',NULL,['id'=>$value->customerId]); ?>"class="btn btn-Danger">
+            <a onclick = "object.setUrl('<?php  echo $this->getUrl('customerDelete',NULL,['id'=>$value->customerId]); ?>').load()" class="btn btn-Danger">
                 Delete
             </a>
         </td>
     </tr>
     <?php } endif; ?>
 </table>
-*/ ?>

@@ -15,7 +15,7 @@ $attributes = $this->getAttributes(); ?>
         <?php
             $displayBlock = \Mage::getBlock('Block\Admin\Attribute\Display');
             $displayBlock = $displayBlock->setAttribute($attribute)->setProduct($product);
-            $displayBlock->toHtml();
+            echo $displayBlock->toHtml();
         ?>
         <?php endforeach; ?>
     <?php else: ?>

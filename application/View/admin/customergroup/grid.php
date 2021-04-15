@@ -8,7 +8,7 @@
    <div id="main-content">
        <h2 style="text-align: center;">Records</h2>
 
-       <a href="<?php echo $this-> getUrl('customerGroupUpdate') ?>" class="btn btn-info" role="button">Add Records</a><br><br>
+       <a onclick="object.setUrl('<?php echo $this-> getUrl('customerGroupUpdate',null,null,true); ?>').load()" class="btn btn-info" role="button">Add Records</a><br><br>
        <div class="table_data">
            <table  border="3px" cellpadding="10px" align="center" width="70%" style="border-collapse:collapse">
                <thead>
@@ -32,8 +32,8 @@
                         <td><?php echo $value->status; ?></td>
                         <td><?php echo $value->createdDate; ?></td>
 
-                       <td><a href='<?php echo $this->getUrl('customerGroupUpdate', null, ['id' => $value->groupId]) ?>' class="btn btn-Success">Update</a></td>      
-                        <td><a href='<?php echo $this->getUrl('customerGroupDelete', null, ['id' => $value->groupId]) ?>' class="btn btn-Danger">Delete</a></td>
+                       <td><a onclick="object.setUrl('<?php echo $this->getUrl('customerGroupUpdate', null, ['id' => $value->groupId]); ?>').load()" class="btn btn-Success">Update</a></td>      
+                        <td><a onclick="object.setUrl('<?php echo $this->getUrl('customerGroupDelete', null, ['id' => $value->groupId]); ?>').load()" class="btn btn-Danger">Delete</a></td>
                    </tr>
                <?php } endif; ?>
                </tbody>

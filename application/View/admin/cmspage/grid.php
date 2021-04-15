@@ -4,7 +4,7 @@
    <br><br><br>
    <div id="main-content">
        <h2 style="text-align: center;">Records</h2>
-       <a href="<?php echo $this-> getUrl('cmsPageUpdate') ?>" class="btn btn-info" role="button">Add Records</a><br><br>
+       <a onclick="object.setUrl('<?php echo $this-> getUrl('cmsPageUpdate',null,null,true); ?>').load()" class="btn btn-info" role="button">Add Records</a><br><br>
 
        <div class="table_data">
            <table  border="3px" cellpadding="10px" align="center" width="70%" class="table table-striped" style="border-collapse:collapse">
@@ -34,8 +34,8 @@
                        <td><?php echo $value->content; ?></td>
                        <td><?php echo $value->status; ?></td>
                        <td><?php echo $value->createdDate; ?></td>
-                       <td><a href='<?php echo $this->getUrl('cmsPageUpdate', null, ['id' => $value->pageId]) ?>' class="btn btn-Success" role="button">Update</a></td>      
-                        <td><a href='<?php echo $this->getUrl('cmsPageDelete', null, ['id' => $value->pageId]) ?>' class="btn btn-danger" role="button">Delete</a></td>
+                       <td><a onclick="object.setUrl('<?php echo $this->getUrl('cmsPageUpdate', null, ['id' => $value->pageId]); ?>').load()" class="btn btn-Success" role="button">Update</a></td>      
+                        <td><a onclick="object.setUrl('<?php echo $this->getUrl('cmsPageDelete', null, ['id' => $value->pageId]) ?>').load()" class="btn btn-danger" role="button">Delete</a></td>
                    </tr>
                <?php } endif; ?>
                </tbody>

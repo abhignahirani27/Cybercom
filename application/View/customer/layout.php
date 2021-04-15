@@ -34,21 +34,21 @@
         <tr>
             <td height="100px">
                 <?php 
-                    $this->getChild('header')->toHtml();
+                    echo $this->getChild('header')->toHtml();
                 ?></td>
         </tr>
         <tr>
             <td height="250px">
                 <?php
-                    $this->createBlock('Block\Core\Layout\Message')->toHtml(); 
-                    $this->getChild('content')->toHtml();
+                    echo $this->createBlock('Block\Core\Layout\Message')->toHtml(); 
+                    echo $this->getChild('content')->toHtml();
                 ?>
             </td>
         </tr>
         <tr>
             <td height="100px">
                 <?php 
-                    $this->getChild('footer')->toHtml();
+                    echo $this->getChild('footer')->toHtml();
                 ?>
             </td>
         </tr>

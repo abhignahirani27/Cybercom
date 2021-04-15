@@ -1,4 +1,4 @@
-<?php //require_once "header.php";
+<?php
 $cmsPage = $this->getTableRow();
 $option = $cmsPage->getStatusOption();
 ?>
@@ -23,7 +23,7 @@ $option = $cmsPage->getStatusOption();
                     <option value="<?php echo $key; ?>" <?php if($cmsPage->status == $key){echo "selected";} ?> ><?php echo $value; ?></option>
                 <?php } ?>
                 </select><br><br>
-                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                <button type="button" class="btn btn-primary" value="submit" onclick="object.setForm(this).load()">Submit</button>
     
             </div>
 
@@ -34,15 +34,9 @@ $option = $cmsPage->getStatusOption();
                 <script>
                         CKEDITOR.replace( 'cmsPage[content]');
                 </script>
-                
-
             </div>
         </div>
 
         </form>
-        <div class="footer">
-            <p>I am Queen!!!!</p>
-        </div> 
-
 </div>
 

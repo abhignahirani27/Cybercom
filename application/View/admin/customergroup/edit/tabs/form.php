@@ -24,14 +24,11 @@ $option = $customerGroup->getStatusOption();
                     <option value="<?php echo $key; ?>" <?php if($customerGroup->status == $key){echo "selected";} ?> ><?php echo $value; ?></option>
                 <?php } ?>
                 </select><br><br>
-                <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                <button type="button" class="btn btn-primary" value="submit" onclick="object.setForm(this).load()">Submit</button>
 
             </div>
         </div>
 
         </form>
-        <div class="footer">
-            <p>I am Queen!!!!</p>
-        </div> 
 
 </div>

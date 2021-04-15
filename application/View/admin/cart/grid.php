@@ -19,9 +19,11 @@ $shipping = $this->getShipping();
 
     <select name="customer" class="form-control">
         <option>Select Customer</option>
-        <?php foreach ($customers->getData() as $key => $customer): ?>
-            <option value = "<?php echo $customer->customerId; ?>" <?php if($customer->customerId == $cart->customerId){echo "Selected" ;}?>><?php echo $customer->firstname; ?></option>
-        <?php endforeach; ?>
+        <?php if($customers): ?>
+            <?php foreach ($customers->getData() as $key => $customer): ?>
+                <option value = "<?php echo $customer->customerId; ?>" <?php if($customer->customerId == $cart->customerId){echo "Selected" ;}?>><?php echo $customer->firstname; ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </select><br>
     <button type="button" class="btn btn-info" onclick="selectCustomer();">Go</button><br><br>
 

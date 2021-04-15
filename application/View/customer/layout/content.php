@@ -2,7 +2,7 @@
 $childrens = $this->getChildren();
 
 foreach ($childrens as $child){
-    $child->toHtml();
+    echo $child->toHtml();
 
 }
 

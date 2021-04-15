@@ -1,10 +1,11 @@
 <?php $attribute = $this->getAttribute();
+//$options = $attribute->getOptions();
 //echo "<pre>";
 //print_r($attribute->getOptions());
 //die;
 ?>
 <form action="<?php echo $this->getUrl('update','Admin\Attribute\Option'); ?>" method="POST">
-    <input type="submit" name="update" value="Update" class = "btn btn-info mr-2">
+    <input type="button" name="update" value="Update" class = "btn btn-info mr-2" onclick="object.setForm(this).load()">
     <input type="button" name="addOption" value="Add Option" class = "btn btn-info" onclick="addRow();"><br><br>
     <table id='existingOption'>
             <?php if (!$attribute->getOptions()) : ?>
@@ -30,7 +31,7 @@
             <tr>
                 <td><input type="text" name="new[name][]"></td>
                 <td><input type="text" name="new[sortOrder][]"></td>
-                <td><input type="submit" name="new[removeOption][]" value="Remove Option" onclick="removeRow(this)"></td>
+                <td><input type="button" name="new[removeOption][]" value="Remove Option" onclick="removeRow(this)"></td>
             </tr>
         </tbody>
     </table>
