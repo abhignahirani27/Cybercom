@@ -9,12 +9,8 @@ class Category extends \Controller\Core\Admin {
    public function gridAction()
     {
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Category\Grid');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $gridHtml = \Mage::getBlock('Block\Admin\Category\Grid')->toHtml();
+            $this->makeResponse($gridHtml);
 
         }catch(\Exception $e){
             echo $e->getMessage();
@@ -55,7 +51,7 @@ class Category extends \Controller\Core\Admin {
             if(!$this->getRequest()->isPost()){
                 throw new \Exception ("Invalid Request");
             }
-
+            
             if ($id = $this->getRequest()->getGet('id')) {
                 $category = $category->load($id);
                 $pathId = $category->pathId;
@@ -80,23 +76,22 @@ class Category extends \Controller\Core\Admin {
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
-        $this->redirect("grid",null,null,true);
+        $grid = \Mage::getBlock('Block\Admin\Category\Grid')->toHtml();
+        $this->makeResponse($grid);
+        //$this->redirect("grid",null,null,true);
     }
 
     public function categoryUpdateAction()
     {
         try{
-            $layout = $this->getLayout(); 
-            $content = $layout->getChild('content');
-            $layout->setTemplate('./View/core/layout/three_column.php');
             $category = \Mage::getModel('Model\Category');
             if ($id = (int)$this->getRequest()->getGet('id')){   
                 $category = $category->load($id);
             }
-            $editBlock =  \Mage::getBlock('Block\Admin\Category\Edit')->setTableRow($category);
-
-            $content->addChild($editBlock);
-            echo $this->toHtmlLayout();
+        $leftBlock = \Mage::getBlock('Block\Admin\Category\Edit\Tabs');
+        $editBlock = \Mage::getBlock('Block\Admin\Category\Edit');
+        $editBlock = $editBlock->setTab($leftBlock)->setTableRow($category)->toHtml();
+        $this->makeResponse($editBlock);
         }
         catch (Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
@@ -123,8 +118,10 @@ class Category extends \Controller\Core\Admin {
         catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
-        }   
-        $this->redirect("grid",null,null,true);     
+        }  
+        $grid = \Mage::getBlock('Block\Admin\Category\Grid')->toHtml();
+        $this->makeResponse($grid); 
+        //$this->redirect("grid",null,null,true);     
     }
 }
 

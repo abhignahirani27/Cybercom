@@ -4,11 +4,25 @@ namespace Controller\Admin\Attribute;
 
 class Option extends \Controller\Core\Admin
 {
+    // public function optionsAction(){
+    //     $attribute = \Mage::getModel('Model\Attribute');
+    //     $id = $this->getRequest()->getGet('attributeId');
+    //     $attribute->load($id);
+
+    //     $optionBlock = \Mage::getBlock('Block\Admin\Attribute\Edit\Tabs\Option');
+    //     $optionBlock->setAttribute($attribute);
+
+    //     $layout = $this->getLayout();
+    //     $layout->getContent()->addChild($optionBlock);
+    //     echo $layout->toHtml();
+    // }
+
     public function updateAction()
     {
+
         $attribute = \Mage::getModel('Model\Attribute');
         $attributeId = $this->getRequest()->getGet('id');
-        $query =  "SELECT `optionId` FROM `attribute_option` WHERE `attributeId`={$attributeId}";
+        $query =  "SELECT `optionId` FROM `attribute_option` WHERE `attributeId`='{$attributeId}'";
         
         $array = $attribute->fetchAll($query);
         if($array){
@@ -43,7 +57,9 @@ class Option extends \Controller\Core\Admin
                 $attribute->save($query);
             }
         }
-        $this->redirect('attributeUpdate','admin\attribute');
+        $grid = \Mage::getBlock('Block\Admin\Attribute\Edit\Tabs\Option')->toHtml();
+        $this->makeResponse($grid);
+        //$this->redirect('attributeUpdate','admin\attribute');
     }
 }
 ?>

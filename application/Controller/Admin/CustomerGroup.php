@@ -7,12 +7,8 @@ class CustomerGroup extends \Controller\Core\Admin
 {
     public function gridAction () {
         try {
-            $grid = \Mage::getBlock('Block\Admin\CustomerGroup\Grid');
-            $grid->setController($this);
-            $layout = $this->getLayout(); 
-            $content = $layout->getChild('content');
-            $content->addChild($grid);
-            $this->toHtmlLayout();
+            $gridHtml = \Mage::getBlock('Block\Admin\CustomerGroup\Grid')->toHtml();
+            $this->makeResponse($gridHtml);
         }
         catch (Exception $e) {
             $e->getMessage();
@@ -41,6 +37,9 @@ class CustomerGroup extends \Controller\Core\Admin
             $customerGroup->setData($customerGroupData);
             $customerGroup->save();
             $this->getMessage()->setSuccess('Record Inserted Successfully.');
+            $grid = \Mage::getBlock('Block\Admin\CustomerGroup\Grid')->toHtml();
+            $this->makeResponse($grid);
+            
         }
         catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
@@ -51,17 +50,14 @@ class CustomerGroup extends \Controller\Core\Admin
 
     public function customerGroupUpdateAction(){
         try{
-            $layout = $this->getLayout(); 
-            $content = $layout->getChild('content');
-            $layout->setTemplate('./View/core/layout/three_column.php');
             $customerGroup = \Mage::getModel('Model\CustomerGroup');
             if ($id = (int)$this->getRequest()->getGet('id')){   
                 $customerGroup = $customerGroup->load($id);
             }
-            $editBlock =  \Mage::getBlock('Block\Admin\CustomerGroup\Edit')->setTableRow($customerGroup);
-            $content->addChild($editBlock);
-            echo $this->toHtmlLayout();
-
+            $leftBlock =  \Mage::getBlock('Block\Admin\CustomerGroup\Edit\Tabs');
+            $editBlock =  \Mage::getBlock('Block\Admin\CustomerGroup\Edit');
+            $editBlock = $editBlock->setTab($leftBlock)->setTableRow($customerGroup)->toHtml();
+            $this->makeResponse($editBlock);
         }
         catch (Exception $e) {
             $e->getMessage();
@@ -90,7 +86,9 @@ class CustomerGroup extends \Controller\Core\Admin
         }  
         // $customerGroup = Mage::getModel('Model_CustomerGroup');
         // $customerGroup->delete();
-        $this->redirect("grid",null,null,true);
+        $grid = \Mage::getBlock('Block\Admin\CustomerGroup\Grid')->toHtml();
+        $this->makeResponse($grid);
+        //$this->redirect("grid",null,null,true);
         
     }
 }

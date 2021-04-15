@@ -8,6 +8,11 @@ class Cart extends \Controller\Core\Admin
     {
 
         try {
+            if($customerId = $this->getRequest()->getGet('customerId')){
+                $cart = $this->getCart($customerId);
+            }else{
+                $cart = $this->getCart();                  
+            }
             $productId = $this->getRequest()->getGet('id');
             $product = \Mage::getModel('Model\Product')->load($productId);
             if(!$product){
@@ -24,7 +29,7 @@ class Cart extends \Controller\Core\Admin
         }
         $this->redirect('index');    
     }
-
+ 
     protected function getCart($customerId = null)
     {
         $cart = \Mage::getModel('Model\Cart');

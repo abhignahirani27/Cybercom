@@ -10,12 +10,8 @@ class Customer extends \Controller\Core\Admin{
     public function gridAction (){
        
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\Customer\Grid');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $gridHtml = \Mage::getBlock('Block\Admin\Customer\Grid')->toHtml();
+            $this->makeResponse($gridHtml);
 
         }catch(\Exception $e){
             echo $e->getMessage();
@@ -48,13 +44,15 @@ class Customer extends \Controller\Core\Admin{
             // print_r($customer);
             // die();
             $customer->save();
-            $this->getMessage()->setSuccess('Record Inserted Successfully.');    
+            $this->getMessage()->setSuccess('Record Inserted Successfully.'); 
+            $grid = \Mage::getBlock('Block\Admin\Customer\Grid')->toHtml();
+            $this->makeResponse($grid);   
         }
         catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
-        $this->redirect("grid",null,null,true);
+        //$this->redirect("grid",null,null,true);
     }
 
     public function addressSaveAction(){
@@ -65,8 +63,8 @@ class Customer extends \Controller\Core\Admin{
             $customerShipping->setTableName('customer_address');
             $customerBilling->setPrimaryKey('customerId');
             $customerShipping->setPrimaryKey('customerId');
-            $customerShipping->addressType = 'Shipping';
-            $customerBilling->addressType = 'Billing';
+            $customerShipping->addressType = 'shipping';
+            $customerBilling->addressType = 'billing';
 
             $customer = \Mage::getModel("Model\Customer");
             $customer->setData($_POST);
@@ -95,32 +93,29 @@ class Customer extends \Controller\Core\Admin{
         }catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
         }
-        $this->redirect("grid",null,null,true);
+        $grid = \Mage::getBlock('Block\Admin\Customer\Grid')->toHtml();
+        $this->makeResponse($grid);
+        //$this->redirect("grid",null,null,true);
     }
 
        
     public function customerUpdateAction()
     {
         try{
-            $layout = $this->getLayout(); 
-            $content = $layout->getChild('content');
-            $layout->setTemplate('./View/core/layout/three_column.php');
             $customer = \Mage::getModel('Model\Customer');
             if ($id = (int)$this->getRequest()->getGet('id')){   
                 $customer = $customer->load($id);
             }
-            $editBlock =  \Mage::getBlock('Block\Admin\Customer\Edit')->setTableRow($customer);
-
-            $content->addChild($editBlock);
-            echo $this->toHtmlLayout();
-
+            $leftBlock = \Mage::getBlock('Block\Admin\Customer\Edit\Tabs');
+            $editBlock =  \Mage::getBlock('Block\Admin\Customer\Edit');
+            $editBlock = $editBlock->setTab($leftBlock)->setTableRow($customer)->toHtml();
+            $this->makeResponse($editBlock);
         
         }catch(\Exception $e){
             echo $e->getMessage();
         }
         
         //require_once './View/admin/customer/customerUpdate.php';
-        
     }
     
     
@@ -143,8 +138,10 @@ class Customer extends \Controller\Core\Admin{
         }
         catch (Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
-        }  
-        $this->redirect("grid",null,null,true);
+        } 
+        $grid = \Mage::getBlock('Block\Admin\Customer\Grid')->toHtml();
+        $this->makeResponse($grid); 
+        //$this->redirect("grid",null,null,true);
     }
     
 }

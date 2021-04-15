@@ -10,19 +10,13 @@ class CmsPage extends \Controller\Core\Admin{
     public function gridAction (){
        
         try{
-            $gridBlock = \Mage::getBlock('Block\Admin\CmsPage\Grid');
-            $gridBlock->setController($this);
-            $layout = $this->getLayout();
-            $content = $layout->getChild('content');
-            $content->addChild($gridBlock);
-            $this->toHtmlLayout();
+            $gridHtml = \Mage::getBlock('Block\Admin\CmsPage\Grid')->toHtml();
+            $this->makeResponse($gridHtml);
 
         }catch(\Exception $e){
             echo $e->getMessage();
         }
     }
-    
-
     
     public function saveAction(){
 
@@ -45,31 +39,28 @@ class CmsPage extends \Controller\Core\Admin{
             $cmsPageData = $this->getRequest()->getPost('cmsPage'); 
             $cmsPage->setData($cmsPageData);
             $cmsPage->save();
-            $this->getMessage()->setSuccess('Record Inserted Successfully.');    
+            $this->getMessage()->setSuccess('Record Inserted Successfully.');  
+            $grid = \Mage::getBlock('Block\Admin\CmsPage\Grid')->toHtml();
+            $this->makeResponse($grid);  
         }
         catch(\Exception $e){
             $this->getMessage()->setFailure($e->getMessage());
             //echo $e->getMessage();
         }
-        $this->redirect("grid",null,null,true);
+        //$this->redirect("grid",null,null,true);
     }
        
     public function cmsPageUpdateAction()
     {
         try{
-            $layout = $this->getLayout(); 
-            $content = $layout->getChild('content');
-            $layout->setTemplate('./View/core/layout/three_column.php');
             $cmsPage = \Mage::getModel('Model\CmsPage');
             if ($id = (int)$this->getRequest()->getGet('id')){   
                 $cmsPage = $cmsPage->load($id);
             }
-            $editBlock =  \Mage::getBlock('Block\Admin\CmsPage\Edit')->setTableRow($cmsPage);
-
-            //print_r($edit);die;
-            // $edit->setTableRow($cmsPage);
-            $content->addChild($editBlock);
-            echo $this->toHtmlLayout();
+            $leftBlock = \Mage::getBlock('Block\Admin\CmsPage\Edit\Tabs');
+            $editBlock =  \Mage::getBlock('Block\Admin\CmsPage\Edit');
+            $editBlock = $editBlock->setTab($leftBlock)->setTableRow($cmsPage)->toHtml();
+            $this->makeResponse($editBlock);
         
         }catch(\Exception $e){
             echo $e->getMessage();
@@ -99,8 +90,10 @@ class CmsPage extends \Controller\Core\Admin{
         }
         catch (Exception $e) {
             $this->getMessage()->setFailure($e->getMessage());
-        }  
-        $this->redirect("grid",null,null,true);
+        }
+        $grid = \Mage::getBlock('Block\Admin\CmsPage\Grid')->toHtml();
+        $this->makeResponse($grid);  
+        //$this->redirect("grid",null,null,true);
     }
     
 }

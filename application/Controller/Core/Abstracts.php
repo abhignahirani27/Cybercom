@@ -37,7 +37,7 @@ class Abstracts
 	}
 
 	public function toHtmlLayout() {
-		$this->getLayout()->toHtml();
+		echo $this->getLayout()->toHtml();
 	}
 
 	public function redirect($actionName = Null, $controllerName = Null, $params = Null, $resetParams = Null) {
@@ -49,6 +49,26 @@ class Abstracts
 		}
 		header("Location:{$this -> getUrl($actionName,$controllerName,$params,$resetParams)}");
 		exit(0);
+	}
+
+	public function makeResponse($block='')
+	{
+		$response = [
+			'status' => 'Success',
+			'message' => 'I am excellent',
+			'element' => [
+				[
+					'selector' => '#content',
+					'html' => $block
+				],
+				[
+					'selector' => '#message',
+					'html' => \Mage::getBlock('Block\Core\Layout\Message')->toHtml()  
+				]
+			]
+		];
+		header('Content-Type: application/json');
+		echo json_encode($response);
 	}
 
 	public function getUrl($actionName = Null, $controllerName = Null, $params = Null, $resetParams = false) {
@@ -74,9 +94,10 @@ class Abstracts
 		unset($final);
 		return "http://localhost/application/index.php?{$queryString}";
 	}
+	
 	public function setMessage($message = null)
 	{
-		$this->message =  \Mage::getModel('Model\Core\Message');
+		$this->message = \Mage::getModel('Model\Core\Message');
 		return $this;
 	}
 	
